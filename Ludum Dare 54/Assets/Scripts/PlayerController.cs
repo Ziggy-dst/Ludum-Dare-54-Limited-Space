@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb2D;
     private Vector2 moveDirection;
     public float moveSpeed;
+    public float friction;
     
     void Start()
     {
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         PlayerControl();
+        rb2D.velocity *= friction;
     }
 
     void PlayerControl()
