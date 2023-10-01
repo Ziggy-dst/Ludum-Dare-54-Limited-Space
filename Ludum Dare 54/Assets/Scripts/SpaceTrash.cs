@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,13 +16,19 @@ public class SpaceTrash : MonoBehaviour
     public float moveSpeed;
 
     public float destroyTime;
+
+    public Transform trash;
+
+    public Transform trail;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         rb2D = GetComponent<Rigidbody2D>();
         rb2D.velocity = (player.transform.position - transform.position).normalized * moveSpeed;
-        rb2D.AddTorque(Random.Range(50f,500f));
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, rb2D.velocity);
+        trash.DORotate(new Vector3(0, 0, 360f), Random.Range(1f, 3f), RotateMode.FastBeyond360).SetEase(Ease.Linear)
+            .SetLoops(-1);
         Invoke("SelfDestroy", destroyTime);
     }
 
@@ -37,12 +44,14 @@ public class SpaceTrash : MonoBehaviour
         {
             player.GetComponent<Rigidbody2D>()
                 .AddForce((player.transform.position - transform.position).normalized * hitForce, ForceMode2D.Impulse);
+            trash.DOKill();
             Destroy(gameObject);
         }
     }
 
     void SelfDestroy()
     {
+        trash.DOKill();
         Destroy(gameObject);
     }
 }
