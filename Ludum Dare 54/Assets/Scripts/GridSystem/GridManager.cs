@@ -15,6 +15,8 @@ public class GridManager : MonoBehaviour
 
     private Vector2 currentPos;
 
+    public bool isHiding = false;
+
     // private List<GameObject> gridList;
     // private List<Vector2> gridPositionList;
 
@@ -24,7 +26,7 @@ public class GridManager : MonoBehaviour
         // GameManager.Instance.OnDragging +=
         currentPos = startGridPos;
         GenerateGrid();
-        gameObject.SetActive(false);
+        if (isHiding) gameObject.SetActive(false);
     }
 
     private void GenerateGrid()

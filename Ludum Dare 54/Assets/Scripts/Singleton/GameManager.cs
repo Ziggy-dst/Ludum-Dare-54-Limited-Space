@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
     public ViewportManager ViewportManager { get; private set; }
 
 
-    public Action OnDragging;
-    public Action OnRelease;
+    public Action OnDraggingUI;
+    public Action OnReleaseUI;
     
     public enum GameState
     {

@@ -12,6 +12,8 @@ public class SingleGrid : MonoBehaviour
     private GameObject occupiedSprite;
     private GameObject dropSprite;
 
+    public string droppableTag;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,7 +63,7 @@ public class SingleGrid : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag.Equals("PlayableUI"))
+        if (other.tag.Equals(droppableTag))
         {
             if (occupyingUI == null) occupyingUI = other.gameObject;
             // if overlap 50%
@@ -102,7 +104,7 @@ public class SingleGrid : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag.Equals("PlayableUI"))
+        if (other.tag.Equals(droppableTag))
         {
             if (!other.gameObject.Equals(occupyingUI)) return;
             occupyingUI = null;

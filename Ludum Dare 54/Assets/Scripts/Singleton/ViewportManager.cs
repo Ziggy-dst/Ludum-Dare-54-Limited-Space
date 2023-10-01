@@ -10,14 +10,14 @@ public class ViewportManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.OnDragging += SetGridState;
-        GameManager.Instance.OnRelease += SetGridState;
+        GameManager.Instance.OnDraggingUI += SetGridState;
+        GameManager.Instance.OnReleaseUI += SetGridState;
     }
 
     private void OnDestroy()
     {
-        GameManager.Instance.OnDragging -= SetGridState;
-        GameManager.Instance.OnRelease -= SetGridState;
+        GameManager.Instance.OnDraggingUI -= SetGridState;
+        GameManager.Instance.OnReleaseUI -= SetGridState;
     }
 
     // Update is called once per frame

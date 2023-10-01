@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5596204386556389996}
   - component: {fileID: 424122350203911742}
   m_Layer: 2
-  m_Name: Grid
+  m_Name: UIGrid
   m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d7547285d04415f84a92f60386aa60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  droppableTag: PlayableUI
 --- !u!1 &5339197371772214348
 GameObject:
   m_ObjectHideFlags: 0
