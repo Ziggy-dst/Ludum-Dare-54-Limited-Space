@@ -39,13 +39,13 @@ public class DraggableObject : MonoBehaviour
     protected virtual void OnMouseDown()
     {
         isDragging = true;
-        GetComponent<SpriteRenderer>().sortingOrder = 999;
+        if (GetComponent<SpriteRenderer>() != null) GetComponent<SpriteRenderer>().sortingOrder = 999;
     }
 
     protected virtual void OnMouseUp()
     {
         isDragging = false;
-        GetComponent<SpriteRenderer>().sortingOrder = 1;
+        if (GetComponent<SpriteRenderer>() != null) GetComponent<SpriteRenderer>().sortingOrder = 1;
     }
 
     protected Vector2 Snap(Vector2 position, float cellSize)

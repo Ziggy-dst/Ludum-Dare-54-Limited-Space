@@ -4,10 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Heart
+  - Danger
   - PlayableUI
-  - Viewport
   - Grid
-  - Item
+  - Viewport
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Knife Cam Visible
+  - Not In Space
   - 
   - 
   - 

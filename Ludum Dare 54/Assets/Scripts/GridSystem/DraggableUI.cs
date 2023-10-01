@@ -31,7 +31,7 @@ public class DraggableUI : DraggableObject
         // check if outside of the viewport
         if (inViewport)
         {
-            GetComponent<SpriteRenderer>().sortingOrder = 2;
+            if (GetComponent<SpriteRenderer>() != null) GetComponent<SpriteRenderer>().sortingOrder = 2;
             if (canDrop) transform.position = Snap(newPosition, cellSize);
             else
             {
