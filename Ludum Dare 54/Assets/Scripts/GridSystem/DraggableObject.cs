@@ -12,6 +12,7 @@ public class DraggableObject : MonoBehaviour
     private bool isDragging = false;
     private bool canDrop = true;
     private bool inViewport = false;
+    [HideInInspector] public bool isSnapped = false;
 
     // position when start to drag
     private Vector2 originalPosition;
@@ -34,6 +35,8 @@ public class DraggableObject : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (tag.Equals("PlayableUI")) GameManager.Instance.OnDragging();
+
         GetComponent<SpriteRenderer>().sortingOrder = 999;
         isDragging = true;
         originalPosition = transform.position;
@@ -42,10 +45,14 @@ public class DraggableObject : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (tag.Equals("PlayableUI")) GameManager.Instance.OnRelease();
+
+        isSnapped = false;
         GetComponent<SpriteRenderer>().sortingOrder = 1;
         // check if outside of the viewport
         if (inViewport)
         {
+            GetComponent<SpriteRenderer>().sortingOrder = 2;
             if (canDrop) transform.position = Snap(newPosition, cellSize);
             else
             {
@@ -53,17 +60,12 @@ public class DraggableObject : MonoBehaviour
             }
         }
 
-        // if (canDrop)
-        // {
-        //     transform.position = Snap(newPosition, cellSize);
-        // }
-        // else transform.position = originalPosition;
-
         isDragging = false;
     }
 
     private Vector2 Snap(Vector2 position, float cellSize)
     {
+        isSnapped = true;
         float adjustedX = Mathf.Round(position.x - objectSize.x / 2f);
         float adjustedY = Mathf.Round(position.y - objectSize.y / 2f);
 
@@ -77,18 +79,22 @@ public class DraggableObject : MonoBehaviour
     {
         if (col.tag.Equals("PlayableUI"))
         {
-            canDrop = false;
+            if (col.GetComponent<DraggableObject>().isSnapped) canDrop = false;
         }
 
         if (col.tag.Equals("Viewport"))
         {
-            print("trigger enterxs");
             inViewport = true;
         }
     }
 
     private void OnTriggerStay2D(Collider2D col)
     {
+        if (col.tag.Equals("PlayableUI") & canDrop)
+        {
+            if (col.GetComponent<DraggableObject>().isSnapped) canDrop = false;
+        }
+
         if (col.tag.Equals("Viewport"))
         {
             inViewport = true;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -20,14 +21,10 @@ public class GridManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // GameManager.Instance.OnDragging +=
         currentPos = startGridPos;
         GenerateGrid();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        gameObject.SetActive(false);
     }
 
     private void GenerateGrid()
@@ -37,7 +34,7 @@ public class GridManager : MonoBehaviour
         {
             for (int j = 0; j < col; j++)
             {
-                GameObject grid = Instantiate(gridPrefab, currentPos, Quaternion.identity);
+                Instantiate(gridPrefab, currentPos, Quaternion.identity, transform);
                 // gridList.Add(grid);
                 // gridPositionList.Add(grid.transform.position);
                 currentPos.x += cellSize;
