@@ -5,6 +5,7 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     public Vector2 startGridPos;
+    public float cellSize;
 
     public GameObject gridPrefab;
 
@@ -12,6 +13,9 @@ public class GridManager : MonoBehaviour
     public int row;
 
     private Vector2 currentPos;
+
+    private List<GameObject> gridList;
+    private List<Vector2> gridPositionList;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +27,7 @@ public class GridManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void GenerateGrid()
@@ -32,12 +36,34 @@ public class GridManager : MonoBehaviour
         {
             for (int j = 0; j < col; j++)
             {
-                Instantiate(gridPrefab, currentPos, Quaternion.identity);
-                currentPos.x++;
+                GameObject grid = Instantiate(gridPrefab, currentPos, Quaternion.identity);
+                // gridList.Add(grid);
+                // gridPositionList.Add(grid.transform.position);
+                currentPos.x += cellSize;
             }
 
             currentPos.x = startGridPos.x;
-            currentPos.y--;
+            currentPos.y -= cellSize;
         }
+    }
+
+    Vector2[] GetGridCoordinates(Vector3 snappedPosition, Vector2 objectSize)
+    {
+        int startX = Mathf.FloorToInt((snappedPosition.x - objectSize.x / 2) / cellSize);
+        int startY = Mathf.FloorToInt((snappedPosition.y - objectSize.y / 2) / cellSize);
+        int endX = Mathf.CeilToInt((snappedPosition.x + objectSize.x / 2) / cellSize);
+        int endY = Mathf.CeilToInt((snappedPosition.y + objectSize.y / 2) / cellSize);
+
+        Vector2[] coordinates = new Vector2[(endX - startX) * (endY - startY)];
+        int index = 0;
+        for (int x = startX; x < endX; x++)
+        {
+            for (int y = startY; y < endY; y++)
+            {
+                coordinates[index] = new Vector2(x, y);
+                index++;
+            }
+        }
+        return coordinates;
     }
 }
