@@ -19,9 +19,9 @@ public class BodySpawner : MonoBehaviour
 
     public int bodyQuantity;
 
-    public List<GameObject> bodyList;
+    public List<GameObject> bodyPrefabList;
 
-    public List<GameObject> bodyPool;
+    public List<GameObject> bodyInstancePool;
 
     public Transform bodiesParent;
     
@@ -44,10 +44,10 @@ public class BodySpawner : MonoBehaviour
         Vector2 initialSpawnPos = new Vector2(xpos, ypos);
         GameObject initialBody;
 
-        initialBody = Instantiate(bodyList[Random.Range(0, bodyList.Count)], initialSpawnPos,
+        initialBody = Instantiate(bodyPrefabList[Random.Range(0, bodyPrefabList.Count)], initialSpawnPos,
             Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360f))));
         initialBody.transform.parent = bodiesParent;
-        bodyPool.Add(initialBody);
+        bodyInstancePool.Add(initialBody);
 
         for (int i = 0; i < quantity - 1;) 
         {
@@ -60,7 +60,7 @@ public class BodySpawner : MonoBehaviour
 
                 bool isAllDistant = false; 
                 
-                foreach (GameObject body in bodyPool)
+                foreach (GameObject body in bodyInstancePool)
                 {
                     if ((spawnPos - body.transform.position).magnitude > bodyDistance)
                     {
@@ -76,9 +76,9 @@ public class BodySpawner : MonoBehaviour
                 if (isAllDistant)
                 {
                     GameObject body;
-                    body = Instantiate(bodyList[Random.Range(0, bodyList.Count)], spawnPos,
+                    body = Instantiate(bodyPrefabList[Random.Range(0, bodyPrefabList.Count)], spawnPos,
                         Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360f))));
-                    bodyPool.Add(body);
+                    bodyInstancePool.Add(body);
                     body.transform.parent = bodiesParent;
                     i++;
                 }
