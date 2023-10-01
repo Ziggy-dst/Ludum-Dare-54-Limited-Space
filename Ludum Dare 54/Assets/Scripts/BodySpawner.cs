@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -76,10 +77,12 @@ public class BodySpawner : MonoBehaviour
                 if (isAllDistant)
                 {
                     GameObject body;
-                    body = Instantiate(bodyPrefabList[Random.Range(0, bodyPrefabList.Count)], spawnPos,
-                        Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360f))));
+                    body = Instantiate(bodyPrefabList[Random.Range(0, bodyPrefabList.Count)], spawnPos, Quaternion.Euler(0,0,0));
                     bodyInstancePool.Add(body);
                     body.transform.parent = bodiesParent;
+                    body.transform.DORotate(new Vector3(0, 0, 360) * (Random.Range(0, 2) * 2 - 1),
+                            Random.Range(30f, 90f), RotateMode.FastBeyond360)
+                        .SetLoops(-1).SetEase(Ease.Linear);
                     i++;
                 }
             }

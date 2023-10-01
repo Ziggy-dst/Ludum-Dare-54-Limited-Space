@@ -28,7 +28,7 @@ public class Radar : MonoBehaviour
         if(PlayerController.instance.moveDirection != Vector2.zero)
         {
             directionIndicator.transform.rotation =
-                Quaternion.LookRotation(Vector3.forward, PlayerController.instance.moveDirection);
+                Quaternion.LookRotation(Vector3.forward, PlayerController.instance.rb2D.velocity);
         }
     }
     

@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
-    private Rigidbody2D rb2D;
+    [HideInInspector] public Rigidbody2D rb2D;
     [HideInInspector] public Vector2 moveDirection;
     public float moveSpeed;
     private float friction;
@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     public GameObject nearestDanger;
     public float nearestDangerDistance;
 
+    public SpriteRenderer fireSpriteRenderer;
+    public GameObject playerSprite;
+
     void Start()
     {
         instance = this;
@@ -32,6 +35,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+        if (rb2D.velocity != Vector2.zero)
+        {
+            playerSprite.transform.rotation = Quaternion.LookRotation(Vector3.forward, rb2D.velocity);
+        }
         Brake();
         DetectNearby();
     }
@@ -52,8 +59,15 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             friction = brakeFriction;
+            fireSpriteRenderer.enabled = true;
+            moveDirection = Vector2.zero;
         }
-        else if(Input.GetKeyUp(KeyCode.Space))
+        else
+        {
+            fireSpriteRenderer.enabled = false;
+        }
+        
+        if(Input.GetKeyUp(KeyCode.Space))
         {
             friction = moveFriction;
         }

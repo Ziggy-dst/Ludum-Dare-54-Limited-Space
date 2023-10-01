@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Knife : MonoBehaviour
@@ -44,7 +45,8 @@ public class Knife : MonoBehaviour
                     Invoke("ResetCrosshair", 3f);
                 
                     //a function that generate a heart into the bag
-                    
+
+                    PlayerController.instance.nearestBody.transform.parent.parent.DOKill();
                     Destroy(PlayerController.instance.nearestBody.transform.parent.parent.gameObject);
                     
                 }
