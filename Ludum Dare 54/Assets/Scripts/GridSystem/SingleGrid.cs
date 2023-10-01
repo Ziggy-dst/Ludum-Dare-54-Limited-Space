@@ -7,55 +7,106 @@ public class SingleGrid : MonoBehaviour
 {
     private LineRenderer _lineRenderer;
 
-    [HideInInspector] public bool isOccupied = false;
+    private GameObject occupyingUI;
 
-    public enum gridState
-    {
-        Hover,
-        Occupied
-    }
+    private GameObject occupiedSprite;
+    private GameObject dropSprite;
 
     // Start is called before the first frame update
     void Start()
     {
         _lineRenderer = GetComponent<LineRenderer>();
+        occupiedSprite = transform.GetChild(0).gameObject;
+        dropSprite = transform.GetChild(1).gameObject;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Glow(GameObject sprite)
     {
-        
+        sprite.SetActive(true);
     }
 
-    public void Glow()
+    private void StopGlow()
     {
-        _lineRenderer.startColor = Color.red;
-        _lineRenderer.endColor = Color.red;
+        occupiedSprite.SetActive(false);
+        dropSprite.SetActive(false);
     }
 
-    public void StopGlow()
+    // return true if overlapping area > 50% of the grid => Grid glows
+    private bool CheckGridState(Collider2D other)
     {
-        _lineRenderer.startColor = Color.white;
-        _lineRenderer.endColor = Color.white;
+        // Ensure both colliders are BoxCollider2D
+
+        BoxCollider2D otherBox = other as BoxCollider2D;
+        Collider2D thisBox = GetComponent<Collider2D>();
+
+        // Calculate overlapping area
+        float overlapWidth = Mathf.Min(thisBox.bounds.max.x, otherBox.bounds.max.x) - Mathf.Max(thisBox.bounds.min.x, otherBox.bounds.min.x);
+        float overlapHeight = Mathf.Min(thisBox.bounds.max.y, otherBox.bounds.max.y) - Mathf.Max(thisBox.bounds.min.y, otherBox.bounds.min.y);
+
+        if (overlapWidth > 0 && overlapHeight > 0)
+        {
+            float overlapArea = overlapWidth * overlapHeight;
+            float thisBoxArea = thisBox.bounds.size.x * thisBox.bounds.size.y;
+
+            float overlapRatio = overlapArea / thisBoxArea;
+
+            // Debug.Log($"Overlap ratio: {overlapRatio * 100}%");
+
+            if (overlapRatio >= 0.15f) return true;
+            return false;
+        }
+
+        return false;
     }
 
-    // TODO: change color when hovering
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag.Equals("PlayableUI"))
+        {
+            if (occupyingUI == null) occupyingUI = other.gameObject;
+            // if overlap 50%
+            if (CheckGridState(other))
+            {
+                if (!other.gameObject.Equals(occupyingUI)) return;
+                // if can drop => green
+                if (other.GetComponent<DraggableObject>().canDrop)
+                {
+                    // if is dragging => green
+                    if (other.GetComponent<DraggableObject>().isDragging)
+                    {
+                        StopGlow();
+                        Glow(dropSprite);
+                    }
+                    // not dragging => red (occupied)
+                    else
+                    {
+                        StopGlow();
+                        Glow(occupiedSprite);
+                    }
+                }
+                // otherwise => red
+                else
+                {
+                    StopGlow();
+                    Glow(occupiedSprite);
+                }
+            }
+            else
+            {
+                if (!other.gameObject.Equals(occupyingUI)) return;
+                occupyingUI = null;
+                StopGlow();
+            }
+        }
+    }
 
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-        // if (other.tag.Equals("PlayableUI"))
-        // {
-        //     _lineRenderer.startColor = Color.red;
-        //     _lineRenderer.endColor = Color.red;
-        // }
-    // }
-
-    // private void OnTriggerExit2D(Collider2D other)
-    // {
-    //     if (other.tag.Equals("PlayableUI"))
-    //     {
-    //         _lineRenderer.startColor = Color.white;
-    //         _lineRenderer.endColor = Color.white;
-    //     }
-    // }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag.Equals("PlayableUI"))
+        {
+            if (!other.gameObject.Equals(occupyingUI)) return;
+            occupyingUI = null;
+            StopGlow();
+        }
+    }
 }

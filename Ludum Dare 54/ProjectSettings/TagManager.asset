@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayableUI
   - Viewport
+  - Grid
   layers:
   - Default
   - TransparentFX

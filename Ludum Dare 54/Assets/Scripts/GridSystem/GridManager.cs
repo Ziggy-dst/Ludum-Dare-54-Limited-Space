@@ -15,8 +15,8 @@ public class GridManager : MonoBehaviour
 
     private Vector2 currentPos;
 
-    private List<GameObject> gridList;
-    private List<Vector2> gridPositionList;
+    // private List<GameObject> gridList;
+    // private List<Vector2> gridPositionList;
 
     // Start is called before the first frame update
     void Start()
@@ -45,23 +45,23 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    Vector2[] GetGridCoordinates(Vector3 snappedPosition, Vector2 objectSize)
-    {
-        int startX = Mathf.FloorToInt((snappedPosition.x - objectSize.x / 2) / cellSize);
-        int startY = Mathf.FloorToInt((snappedPosition.y - objectSize.y / 2) / cellSize);
-        int endX = Mathf.CeilToInt((snappedPosition.x + objectSize.x / 2) / cellSize);
-        int endY = Mathf.CeilToInt((snappedPosition.y + objectSize.y / 2) / cellSize);
-
-        Vector2[] coordinates = new Vector2[(endX - startX) * (endY - startY)];
-        int index = 0;
-        for (int x = startX; x < endX; x++)
-        {
-            for (int y = startY; y < endY; y++)
-            {
-                coordinates[index] = new Vector2(x, y);
-                index++;
-            }
-        }
-        return coordinates;
-    }
+    // Vector2[] GetGridCoordinates(Vector3 snappedPosition, Vector2 objectSize)
+    // {
+    //     int startX = Mathf.FloorToInt((snappedPosition.x - objectSize.x / 2) / cellSize);
+    //     int startY = Mathf.FloorToInt((snappedPosition.y - objectSize.y / 2) / cellSize);
+    //     int endX = Mathf.CeilToInt((snappedPosition.x + objectSize.x / 2) / cellSize);
+    //     int endY = Mathf.CeilToInt((snappedPosition.y + objectSize.y / 2) / cellSize);
+    //
+    //     Vector2[] coordinates = new Vector2[(endX - startX) * (endY - startY)];
+    //     int index = 0;
+    //     for (int x = startX; x < endX; x++)
+    //     {
+    //         for (int y = startY; y < endY; y++)
+    //         {
+    //             coordinates[index] = new Vector2(x, y);
+    //             index++;
+    //         }
+    //     }
+    //     return coordinates;
+    // }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class DraggableObject : MonoBehaviour
@@ -9,8 +10,10 @@ public class DraggableObject : MonoBehaviour
     public float cellSize = 1;
 
     private Vector2 offset;
-    private bool isDragging = false;
-    private bool canDrop = true;
+    [HideInInspector]
+    public bool isDragging = false;
+    [HideInInspector]
+    public bool canDrop = true;
     private bool inViewport = false;
     // [HideInInspector] public bool isSnapped = false;
 
@@ -35,7 +38,6 @@ public class DraggableObject : MonoBehaviour
 
     private void OnMouseDown()
     {
-        print("on mouse down");
         // isSnapped = false;
         isDragging = true;
 
@@ -79,34 +81,6 @@ public class DraggableObject : MonoBehaviour
         return new Vector2(x, y);
     }
 
-    // return true if overlapping area > 50% of the grid => Grid glows
-    private bool CheckGridState(Collider2D other)
-    {
-        // Ensure both colliders are BoxCollider2D
-
-        BoxCollider2D otherBox = other as BoxCollider2D;
-        Collider2D thisBox = GetComponent<Collider2D>();
-
-        // Calculate overlapping area
-        float overlapWidth = Mathf.Min(thisBox.bounds.max.x, otherBox.bounds.max.x) - Mathf.Max(thisBox.bounds.min.x, otherBox.bounds.min.x);
-        float overlapHeight = Mathf.Min(thisBox.bounds.max.y, otherBox.bounds.max.y) - Mathf.Max(thisBox.bounds.min.y, otherBox.bounds.min.y);
-
-        if (overlapWidth > 0 && overlapHeight > 0)
-        {
-            float overlapArea = overlapWidth * overlapHeight;
-            float otherBoxArea = otherBox.bounds.size.x * otherBox.bounds.size.y;
-
-            float overlapRatio = overlapArea / otherBoxArea;
-
-            Debug.Log($"Overlap ratio: {overlapRatio * 100}%");
-
-            if (overlapRatio >= 0.5f) return true;
-            return false;
-        }
-
-        return false;
-    }
-
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag.Equals("Viewport"))
@@ -135,19 +109,6 @@ public class DraggableObject : MonoBehaviour
         if (col.tag.Equals("PlayableUI"))
         {
             if (col.GetComponent<DraggableObject>().inViewport) canDrop = false;
-        }
-
-        if (col.tag.Equals("Grid"))
-        {
-            // check if over 50% overlapping
-            if (CheckGridState(col))
-            {
-                col.GetComponent<SingleGrid>().Glow();
-            }
-            else
-            {
-                col.GetComponent<SingleGrid>().StopGlow();
-            }
         }
     }
 
