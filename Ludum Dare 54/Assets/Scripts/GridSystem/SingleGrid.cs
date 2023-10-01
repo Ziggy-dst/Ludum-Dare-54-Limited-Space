@@ -27,23 +27,35 @@ public class SingleGrid : MonoBehaviour
         
     }
 
+    public void Glow()
+    {
+        _lineRenderer.startColor = Color.red;
+        _lineRenderer.endColor = Color.red;
+    }
+
+    public void StopGlow()
+    {
+        _lineRenderer.startColor = Color.white;
+        _lineRenderer.endColor = Color.white;
+    }
+
     // TODO: change color when hovering
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag.Equals("PlayableUI"))
-        {
-            _lineRenderer.startColor = Color.red;
-            _lineRenderer.endColor = Color.red;
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+        // if (other.tag.Equals("PlayableUI"))
+        // {
+        //     _lineRenderer.startColor = Color.red;
+        //     _lineRenderer.endColor = Color.red;
+        // }
+    // }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.tag.Equals("PlayableUI"))
-        {
-            _lineRenderer.startColor = Color.white;
-            _lineRenderer.endColor = Color.white;
-        }
-    }
+    // private void OnTriggerExit2D(Collider2D other)
+    // {
+    //     if (other.tag.Equals("PlayableUI"))
+    //     {
+    //         _lineRenderer.startColor = Color.white;
+    //         _lineRenderer.endColor = Color.white;
+    //     }
+    // }
 }
