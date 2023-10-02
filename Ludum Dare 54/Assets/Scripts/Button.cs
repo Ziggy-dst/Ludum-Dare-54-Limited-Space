@@ -24,6 +24,11 @@ public class Button : MonoBehaviour
             {
                 spriteRenderer.sprite = buttonPressed;
             }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                GameManager.Instance.OnGameWins();
+            }
         }
         else
         {

@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public Action OnGameStarts;
     // public Action OnGamePauses;
     public Action OnGameOver;
-    // public Action OnGameWins;
+    public Action OnGameWins;
 
     public enum GameState
     {
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         GamePlay,
         // Pause,
         GameOver,
-        // Victory
+        Victory
     }
 
     private void Awake()
@@ -82,11 +82,11 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Game Over");
                 break;
 
-            // case GameState.Victory:
-            //     OnGameWins();
-            //     // Implement logic for Victory state
-            //     Debug.Log("You Win!");
-            //     break;
+            case GameState.Victory:
+                OnGameWins();
+                // Implement logic for Victory state
+                Debug.Log("You Win!");
+                break;
 
             default:
                 break;

@@ -38,6 +38,7 @@ public class Heart : MonoBehaviour
 
                 // instantiate heart icon
                 Instantiate(heartIcons[Random.Range(0, heartIcons.Length - 1)], heartPos, Quaternion.identity);
+                Destroy(gameObject);
             }
         }
     }
