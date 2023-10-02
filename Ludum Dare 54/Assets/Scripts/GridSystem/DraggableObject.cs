@@ -12,7 +12,8 @@ public class DraggableObject : MonoBehaviour
 
     [HideInInspector]
     public bool isDragging = false;
-    protected bool inViewport = false;
+    [HideInInspector]
+    public bool inViewport = false;
     [HideInInspector]
     public bool canDrop = true;
 

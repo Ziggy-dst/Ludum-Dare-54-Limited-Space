@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public float moveFriction;
     public float brakeFriction;
     public float oxygenPoint = 100f;
+    public float baseHealth = 0f;
     public float damageCooldownInterval;
     [HideInInspector] public bool damageLock = false;
 
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
     public List<string> lines;
 
     public List<AudioClip> spraySounds;
+
+    public DraggableUI oxygenBar;
 
     void Start()
     {
@@ -133,22 +136,32 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (!damageLock)
+        if (oxygenBar.inViewport)
         {
-            oxygenPoint -= damage;
-            damageLock = true;
-            Invoke("ResetDamageLock", damageCooldownInterval);
+            if (!damageLock)
+            {
+                oxygenPoint -= damage;
+                damageLock = true;
+                Invoke("ResetDamageLock", damageCooldownInterval);
+            }
+        }
+        else
+        {
+            if (!damageLock)
+            {
+                baseHealth -= damage;
+                damageLock = true;
+                Invoke("ResetDamageLock", damageCooldownInterval);
+            }
         }
 
-        if (oxygenPoint < 0) GameManager.Instance.ChangeState(GameManager.GameState.GameOver);
+        if (oxygenPoint < 0 || baseHealth < 0) GameManager.Instance.ChangeState(GameManager.GameState.GameOver);
     }
 
     void ResetDamageLock()
     {
         damageLock = false;
     }
-
-  
 
     void DetectNearby()
     {

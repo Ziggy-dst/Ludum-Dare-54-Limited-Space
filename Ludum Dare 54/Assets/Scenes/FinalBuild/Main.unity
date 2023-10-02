@@ -3160,6 +3160,7 @@ MonoBehaviour:
   moveFriction: 0.98
   brakeFriction: 0.9
   oxygenPoint: 100
+  baseHealth: 0
   damageCooldownInterval: 1
   damageLock: 0
   nearbyBodies: []
@@ -3185,6 +3186,7 @@ MonoBehaviour:
   spraySounds:
   - {fileID: 8300000, guid: eb8600e580915c94bb40ec4b3dc63941, type: 3}
   - {fileID: 8300000, guid: a8a54265437bb8d4488f18dcf92ea896, type: 3}
+  oxygenBar: {fileID: 4915599153973882974}
 --- !u!212 &1084429751
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6095,6 +6097,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e55be65b716f9401497e9e9e9df54cf0, type: 3}
+--- !u!114 &4915599153973882974 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 703493963245781744, guid: e55be65b716f9401497e9e9e9df54cf0, type: 3}
+  m_PrefabInstance: {fileID: 4915599153973882973}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c10c078a55b1a413a89513c09b68102c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7796424886804022759
 PrefabInstance:
   m_ObjectHideFlags: 0
