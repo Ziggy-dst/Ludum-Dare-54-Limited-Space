@@ -19,6 +19,8 @@ public class SpaceTrash : MonoBehaviour
 
     public Transform trash;
 
+    public float damage;
+
     // public Transform trail;
 
     public AudioClip impactClip;
@@ -46,6 +48,7 @@ public class SpaceTrash : MonoBehaviour
         {
             player.GetComponent<Rigidbody2D>()
                 .AddForce((player.transform.position - transform.position).normalized * hitForce, ForceMode2D.Impulse);
+            PlayerController.instance.TakeDamage(damage);
             trash.DOKill();
             
             AudioSource audioSource = col.gameObject.AddComponent<AudioSource>();

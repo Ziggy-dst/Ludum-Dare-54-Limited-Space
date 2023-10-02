@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     private float friction;
     public float moveFriction;
     public float brakeFriction;
+    public float oxygenPoint = 100f;
+    public float damageCooldownInterval;
+    [HideInInspector] public bool damageLock = false;
 
     public List<Collider2D> nearbyBodies;
     public GameObject nearestBody;
@@ -126,6 +129,21 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         Destroy(audioSource);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if (!damageLock)
+        {
+            oxygenPoint -= damage;
+            damageLock = true;
+            Invoke("ResetDamageLock", damageCooldownInterval);
+        }
+    }
+
+    void ResetDamageLock()
+    {
+        damageLock = false;
     }
 
   

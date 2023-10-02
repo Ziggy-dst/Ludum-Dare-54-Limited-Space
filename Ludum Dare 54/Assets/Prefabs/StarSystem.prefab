@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitForce: 1000
+  damage: 20
 --- !u!1 &1012291885745258375
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,6 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitForce: 1000
+  damage: 20
 --- !u!1 &3532962962977318997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,6 +1257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitForce: 1000
+  damage: 20
 --- !u!1 &9145649731564947678
 GameObject:
   m_ObjectHideFlags: 0

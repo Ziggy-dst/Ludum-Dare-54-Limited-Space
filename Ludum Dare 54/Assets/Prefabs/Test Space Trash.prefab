@@ -273,6 +273,7 @@ MonoBehaviour:
   moveSpeed: 15
   destroyTime: 20
   trash: {fileID: 2887030970059426076}
+  damage: 10
   impactClip: {fileID: 8300000, guid: 3af45e60053c09a4989f896ade740e29, type: 3}
 --- !u!50 &1119417822398765843
 Rigidbody2D:

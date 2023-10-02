@@ -8,6 +8,7 @@ public class Satellite : MonoBehaviour
 {
     private bool isPlayingBackwards = false;
     public float hitForce;
+    public float damage;
     void Start()
     {
         
@@ -48,6 +49,8 @@ public class Satellite : MonoBehaviour
             GameObject player = col.gameObject;
             player.GetComponent<Rigidbody2D>()
                 .AddForce((player.transform.position - transform.position).normalized * hitForce, ForceMode2D.Impulse);
+            
+            PlayerController.instance.TakeDamage(damage);
         }
     }
 }
