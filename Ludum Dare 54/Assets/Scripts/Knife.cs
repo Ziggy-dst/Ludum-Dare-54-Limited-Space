@@ -81,6 +81,7 @@ public class Knife : MonoBehaviour
                     body.transform.parent.parent.GetComponent<SpriteRenderer>().DOFade(0, 2).OnComplete(() =>
                     {
                         body.transform.parent.parent.DOKill();
+                        body.transform.parent.DOKill();
                         Destroy(body.transform.parent.parent.gameObject);
                         isCutting = false;
                     });
