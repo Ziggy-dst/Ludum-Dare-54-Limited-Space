@@ -7,10 +7,11 @@ TagManager:
   - Heart
   - Danger
   - PlayableUI
-  - Grid
   - Item
   - ScreenBound
   - Viewport
+  - UIGrid
+  - ItemGrid
   layers:
   - Default
   - TransparentFX

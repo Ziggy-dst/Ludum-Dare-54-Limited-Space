@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DraggableUI : DraggableObject
 {
-    private bool inViewport = false;
-
     private collideEdge currentCollideEdge = collideEdge.None;
 
     public float horizontalEdgePos = 22.75f;
@@ -20,21 +18,10 @@ public class DraggableUI : DraggableObject
         Up
     }
 
-    protected override void Drag()
-    {
-        if (isDragging)
-        {
-            transform.position = new Vector2(newPosition.x, newPosition.y);
-        }
-    }
-
     protected override void OnMouseDown()
     {
         base.OnMouseDown();
         GameManager.Instance.OnDraggingUI();
-
-        originalPosition = transform.position;
-        offset = (Vector2)transform.position - (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
     protected override void OnMouseUp()
@@ -48,7 +35,7 @@ public class DraggableUI : DraggableObject
         if (inViewport)
         {
             if (GetComponent<SpriteRenderer>() != null) GetComponent<SpriteRenderer>().sortingOrder = 2;
-            if (canDrop) transform.position = Snap(newPosition, cellSize);
+            if (canDrop) transform.position = Snap(newPosition);
             else
             {
                 transform.position = originalPosition;
@@ -56,6 +43,10 @@ public class DraggableUI : DraggableObject
                 canDrop = true;
             }
         }
+
+        // UI: change relevant data
+        // Item: destroy
+        // if (intersectionCheck.maxGrids == intersectionCheck.currentActiveColliders)
     }
 
     private void ReturnToEdge()

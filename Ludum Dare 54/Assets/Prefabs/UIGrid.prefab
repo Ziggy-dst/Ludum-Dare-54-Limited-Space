@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 506063045970896901}
   m_Layer: 2
   m_Name: Dropping
-  m_TagString: Untagged
+  m_TagString: UIGrid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 424122350203911742}
   m_Layer: 2
   m_Name: UIGrid
-  m_TagString: Grid
+  m_TagString: UIGrid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 7128938971219704020}
   m_Layer: 2
   m_Name: Occupied
-  m_TagString: Untagged
+  m_TagString: UIGrid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

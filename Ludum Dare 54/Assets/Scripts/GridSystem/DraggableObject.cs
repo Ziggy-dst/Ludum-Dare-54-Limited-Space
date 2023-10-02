@@ -12,6 +12,7 @@ public class DraggableObject : MonoBehaviour
 
     [HideInInspector]
     public bool isDragging = false;
+    protected bool inViewport = false;
     [HideInInspector]
     public bool canDrop = true;
 
@@ -19,6 +20,8 @@ public class DraggableObject : MonoBehaviour
     protected Vector2 originalPosition;
     // position after drag
     protected Vector2 newPosition;
+
+    public IntersectionCheck intersectionCheck;
 
     void Update()
     {
@@ -31,7 +34,7 @@ public class DraggableObject : MonoBehaviour
         newPosition = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
     }
 
-    protected virtual void Drag()
+    protected void Drag()
     {
         if (isDragging) transform.position = new Vector2(newPosition.x, newPosition.y);
     }
@@ -40,6 +43,9 @@ public class DraggableObject : MonoBehaviour
     {
         isDragging = true;
         if (GetComponent<SpriteRenderer>() != null) GetComponent<SpriteRenderer>().sortingOrder = 999;
+
+        originalPosition = transform.position;
+        offset = (Vector2)transform.position - (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
     protected virtual void OnMouseUp()
@@ -48,13 +54,13 @@ public class DraggableObject : MonoBehaviour
         if (GetComponent<SpriteRenderer>() != null) GetComponent<SpriteRenderer>().sortingOrder = 1;
     }
 
-    protected Vector2 Snap(Vector2 position, float cellSize)
+    protected virtual Vector2 Snap(Vector2 position)
     {
-        float adjustedX = Mathf.Round(position.x - objectSize.x / 2f);
-        float adjustedY = Mathf.Round(position.y - objectSize.y / 2f);
+        float adjustedX = position.x - objectSize.x / 2f;
+        float adjustedY = position.y - objectSize.y / 2f;
 
-        float x = Mathf.Round(adjustedX / cellSize) * cellSize + objectSize.x / 2f;
-        float y = Mathf.Round(adjustedY / cellSize) * cellSize + objectSize.y / 2f;
+        float x = Mathf.Round(adjustedX / cellSize) * cellSize + objectSize.x / 2f ;
+        float y = Mathf.Round(adjustedY / cellSize) * cellSize + objectSize.y / 2f ;
 
         return new Vector2(x, y);
     }

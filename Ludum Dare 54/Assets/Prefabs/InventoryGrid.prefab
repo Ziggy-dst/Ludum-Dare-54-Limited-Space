@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 424122350203911742}
   m_Layer: 2
   m_Name: InventoryGrid
-  m_TagString: Grid
+  m_TagString: ItemGrid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
