@@ -25,18 +25,16 @@ public class Button : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 spriteRenderer.sprite = buttonPressed;
-                
-                PressedFunction();
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                GameManager.Instance.ChangeState(GameManager.GameState.Victory);
             }
         }
         else
         {
             spriteRenderer.sprite = buttonIdle;
         }
-    }
-
-    void PressedFunction()
-    {
-        throw new NotImplementedException();
     }
 }

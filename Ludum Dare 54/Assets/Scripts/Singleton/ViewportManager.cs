@@ -20,12 +20,6 @@ public class ViewportManager : MonoBehaviour
         GameManager.Instance.OnReleaseUI -= SetGridState;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void SetGridState()
     {
         viewPortGrid?.gameObject.SetActive(!viewPortGrid.gameObject.activeSelf);

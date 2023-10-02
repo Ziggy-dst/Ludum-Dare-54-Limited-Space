@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public Action OnGameStarts;
     // public Action OnGamePauses;
     public Action OnGameOver;
-    // public Action OnGameWins;
+    public Action OnGameWins;
 
     public enum GameState
     {
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         GamePlay,
         // Pause,
         GameOver,
-        // Victory
+        Victory
     }
 
     private void Awake()
@@ -40,12 +40,25 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         ViewportManager = GetComponentInChildren<ViewportManager>();
     }
     
     private void Start()
     {
         ChangeState(GameState.MainMenu);
+    }
+
+    private void Update()
+    {
+        LoadScene();
+    }
+
+    public void ChangeState(string newState)
+    {
+        currentState = (GameState)Enum.Parse(typeof(GameState), newState);
+        OnStateChange();
     }
 
     public void ChangeState(GameState newState)
@@ -65,7 +78,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GamePlay:
-                OnGameStarts();
+                // OnGameStarts();
                 // Implement logic for GamePlay state
                 Debug.Log("Gameplay started");
                 break;
@@ -77,19 +90,43 @@ public class GameManager : MonoBehaviour
             //     break;
 
             case GameState.GameOver:
-                OnGameOver();
+                // OnGameOver();
+                PlayerController.instance.spaceShip.SetActive(true);
+                // SceneManager.LoadScene("GameOver");
                 // Implement logic for GameOver state
                 Debug.Log("Game Over");
                 break;
 
-            // case GameState.Victory:
-            //     OnGameWins();
-            //     // Implement logic for Victory state
-            //     Debug.Log("You Win!");
-            //     break;
+            case GameState.Victory:
+                // OnGameWins();
+                PlayerController.instance.spaceShip.SetActive(true);
+                // SceneManager.LoadScene("GameWins");
+                // Implement logic for Victory state
+                Debug.Log("You Win!");
+                break;
 
             default:
                 break;
+        }
+    }
+
+    private void LoadScene()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (SceneManager.GetActiveScene().name.Equals("Menu"))
+            {
+                // SceneManager.LoadScene("Main");
+                // ChangeState(GameState.GamePlay);
+                GameObject.Find("Intro Animation").GetComponent<IntroAnimation>().enabled = true;
+            }
+                
+            else if (SceneManager.GetActiveScene().name.Equals("GameOver") ||
+                     SceneManager.GetActiveScene().name.Equals("GameWins"))
+            {
+                SceneManager.LoadScene("Menu");
+                ChangeState(GameState.MainMenu);
+            }
         }
     }
 }

@@ -23,6 +23,7 @@ public class DraggableUI : DraggableObject
     protected override void OnMouseDown()
     {
         base.OnMouseDown();
+        Cursor.visible = false;
         GameManager.Instance.OnDraggingUI();
         
         AudioSource audioSource = gameObject.AddComponent<AudioSource>();
@@ -35,6 +36,7 @@ public class DraggableUI : DraggableObject
     protected override void OnMouseUp()
     {
         base.OnMouseUp();
+        Cursor.visible = true;
         GameManager.Instance.OnReleaseUI();
         
         AudioSource audioSource = gameObject.AddComponent<AudioSource>();

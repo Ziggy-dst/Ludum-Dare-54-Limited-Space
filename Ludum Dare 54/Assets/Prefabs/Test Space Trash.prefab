@@ -270,10 +270,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitForce: 500
-  moveSpeed: 15
+  moveSpeed: 5
   destroyTime: 20
   trash: {fileID: 2887030970059426076}
-  damage: 10
+  damage: 5
   impactClip: {fileID: 8300000, guid: 3af45e60053c09a4989f896ade740e29, type: 3}
 --- !u!50 &1119417822398765843
 Rigidbody2D:

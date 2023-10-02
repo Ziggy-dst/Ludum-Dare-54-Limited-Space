@@ -28,13 +28,17 @@ public class SpaceTrashSpawner : MonoBehaviour
     void Start()
     {
         playerTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        InvokeRepeating("SpawnBodies",0, spawnInterval);
+        InvokeRepeating("SpawnBodies",5, spawnInterval);
     }
 
     // Update is called once per frame
     void Update()
     {
         playerPosition = playerTransform.position;
+        if (GameManager.Instance.currentState == GameManager.GameState.GameOver)
+        {
+            CancelInvoke();
+        }
     }
 
     public void SpawnBodies()

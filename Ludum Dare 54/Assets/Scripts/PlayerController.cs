@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public float moveFriction;
     public float brakeFriction;
     public float oxygenPoint = 100f;
+    public float baseHealth = 0f;
     public float damageCooldownInterval;
     [HideInInspector] public bool damageLock = false;
 
@@ -31,11 +32,15 @@ public class PlayerController : MonoBehaviour
 
     public SpriteRenderer fireSpriteRenderer;
     public GameObject playerSprite;
+    public Sprite deadSprite;
 
     public TextMeshPro playerLine;
     public List<string> lines;
 
     public List<AudioClip> spraySounds;
+
+    public DraggableUI oxygenBar;
+    public GameObject spaceShip;
 
     void Start()
     {
@@ -46,16 +51,31 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+        if (GameManager.Instance.currentState == GameManager.GameState.GamePlay)
+        {
+            moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+            Brake();
+            DetectNearby();
+            
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) ||
+                Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.LeftArrow) ||
+                Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow) ||
+                Input.GetKeyDown(KeyCode.DownArrow)) 
+            {
+                AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+                audioSource.clip = spraySounds[Random.Range(0, spraySounds.Count)];
+                audioSource.spatialBlend = 0;
+                audioSource.Play();
+                StartCoroutine(SelfDestroy(audioSource));
+            }
+        }
+        
         if (rb2D.velocity != Vector2.zero)
         {
             playerSprite.transform.rotation = Quaternion.LookRotation(Vector3.forward, rb2D.velocity);
         }
-        Brake();
-        DetectNearby();
-
-
-        if (nearestBodyDistance < 99)
+        
+        if (nearestBodyDistance < 299)
         {
             bodyDistanceDisplay.text = nearestBodyDistance.ToString("F");
         }
@@ -73,16 +93,10 @@ public class PlayerController : MonoBehaviour
             dangerDistanceDisplay.text = "";
         }
 
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) ||
-            Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.LeftArrow) ||
-            Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow) ||
-            Input.GetKeyDown(KeyCode.DownArrow)) 
+        if (GameManager.Instance.currentState == GameManager.GameState.GameOver ||
+            GameManager.Instance.currentState == GameManager.GameState.Victory) 
         {
-            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.clip = spraySounds[Random.Range(0, spraySounds.Count)];
-            audioSource.spatialBlend = 0;
-            audioSource.Play();
-            StartCoroutine(SelfDestroy(audioSource));
+            rb2D.bodyType = RigidbodyType2D.Static;
         }
     }
 
@@ -133,22 +147,36 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (!damageLock)
+        if (oxygenBar.inViewport)
         {
-            oxygenPoint -= damage;
-            damageLock = true;
-            Invoke("ResetDamageLock", damageCooldownInterval);
+            if (!damageLock)
+            {
+                oxygenPoint -= damage;
+                damageLock = true;
+                Invoke("ResetDamageLock", damageCooldownInterval);
+            }
+        }
+        else
+        {
+            if (!damageLock)
+            {
+                baseHealth -= damage;
+                damageLock = true;
+                Invoke("ResetDamageLock", damageCooldownInterval);
+            }
         }
 
-        // if (oxygenPoint < 0) GameManager.Instance.OnGameOver();
+        if (oxygenPoint < 0 || baseHealth < 0)
+        {
+            GameManager.Instance.ChangeState(GameManager.GameState.GameOver);
+            playerSprite.GetComponent<SpriteRenderer>().sprite = deadSprite;
+        }
     }
 
     void ResetDamageLock()
     {
         damageLock = false;
     }
-
-  
 
     void DetectNearby()
     {
@@ -158,7 +186,7 @@ public class PlayerController : MonoBehaviour
         nearestBodyDistance = Single.PositiveInfinity;
         nearestDangerDistance = Single.PositiveInfinity;
         
-        List<Collider2D> potentialNearbyBodies = Physics2D.OverlapCircleAll(transform.position, 100f).ToList();
+        List<Collider2D> potentialNearbyBodies = Physics2D.OverlapCircleAll(transform.position, 300f).ToList();
         foreach (var potentialBodyCollider2D in potentialNearbyBodies)
         {
             if (potentialBodyCollider2D.CompareTag("Heart"))
