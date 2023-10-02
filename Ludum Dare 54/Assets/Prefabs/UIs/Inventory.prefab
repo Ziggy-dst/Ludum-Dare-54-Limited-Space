@@ -176,6 +176,8 @@ MonoBehaviour:
   cellSize: 1
   isDragging: 0
   canDrop: 1
+  horizontalEdgePos: 22.75
+  verticalEdgePos: 12
 --- !u!1 &6688938767116185570
 GameObject:
   m_ObjectHideFlags: 0

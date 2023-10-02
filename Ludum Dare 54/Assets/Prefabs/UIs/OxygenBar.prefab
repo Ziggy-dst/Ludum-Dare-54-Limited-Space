@@ -175,3 +175,5 @@ MonoBehaviour:
   cellSize: 1
   isDragging: 0
   canDrop: 1
+  horizontalEdgePos: 22.75
+  verticalEdgePos: 12

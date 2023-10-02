@@ -6,6 +6,20 @@ public class DraggableUI : DraggableObject
 {
     private bool inViewport = false;
 
+    private collideEdge currentCollideEdge = collideEdge.None;
+
+    public float horizontalEdgePos = 22.75f;
+    public float verticalEdgePos = 12f;
+
+    private enum collideEdge
+    {
+        None,
+        Right,
+        Down,
+        Left,
+        Up
+    }
+
     protected override void Drag()
     {
         if (isDragging)
@@ -28,7 +42,9 @@ public class DraggableUI : DraggableObject
         base.OnMouseUp();
         GameManager.Instance.OnReleaseUI();
 
-        // check if outside of the viewport
+        if (currentCollideEdge != collideEdge.None) ReturnToEdge();
+
+            // check if outside of the viewport
         if (inViewport)
         {
             GetComponent<SpriteRenderer>().sortingOrder = 2;
@@ -42,8 +58,57 @@ public class DraggableUI : DraggableObject
         }
     }
 
+    private void ReturnToEdge()
+    {
+        switch (currentCollideEdge)
+        {
+            case collideEdge.Up:
+                transform.position = new Vector2(transform.position.x, verticalEdgePos);
+                break;
+            case collideEdge.Down:
+                transform.position = new Vector2(transform.position.x, -verticalEdgePos);
+                break;
+            case collideEdge.Right:
+                transform.position = new Vector2(horizontalEdgePos, transform.position.y);
+                break;
+            case collideEdge.Left:
+                transform.position = new Vector2(-horizontalEdgePos, transform.position.y);
+                break;
+        }
+    }
+
+    private void DetectEdgeCollider(Collider2D col, bool isSnapping)
+    {
+        if (!isSnapping)
+        {
+            currentCollideEdge = collideEdge.None;
+            return;
+        }
+        switch (col.name)
+        {
+            case "Up":
+                currentCollideEdge = collideEdge.Up;
+                break;
+            case "Down":
+                currentCollideEdge = collideEdge.Down;
+                break;
+            case "Right":
+                currentCollideEdge = collideEdge.Right;
+                break;
+            case "Left":
+                currentCollideEdge = collideEdge.Left;
+                break;
+            default:
+                currentCollideEdge = collideEdge.None;
+                break;
+        }
+        // print(currentCollideEdge);
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
+        if (col.tag.Equals("ScreenBound")) DetectEdgeCollider(col, true);
+
         if (col.tag.Equals("Viewport"))
         {
             inViewport = true;
@@ -58,6 +123,8 @@ public class DraggableUI : DraggableObject
 
     private void OnTriggerStay2D(Collider2D col)
     {
+        if (col.tag.Equals("ScreenBound")) DetectEdgeCollider(col, true);
+
         if (col.tag.Equals("Viewport"))
         {
             inViewport = true;
@@ -72,6 +139,8 @@ public class DraggableUI : DraggableObject
 
     private void OnTriggerExit2D(Collider2D col)
     {
+        if (col.tag.Equals("ScreenBound")) DetectEdgeCollider(col, false);
+
         if (col.tag.Equals("Viewport"))
         {
             inViewport = false;
