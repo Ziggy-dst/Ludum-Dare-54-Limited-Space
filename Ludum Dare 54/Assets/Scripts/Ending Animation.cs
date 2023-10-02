@@ -33,7 +33,7 @@ public class EndingAnimation : MonoBehaviour
                     .Insert(0, player.DOMove(playerInitialPos, 1f))
                     .AppendInterval(4)
                     .Append(stars.DOMove(Vector3.down * 15, 10f).SetEase(Ease.Linear))
-                    .Insert(5,result.DOText("That was " + GameManager.Instance.currentState + ".",2f));
+                    .Insert(5,result.DOText("That was " + GameManager.Instance.score + ".",2f));
             }));
         // .Append(title.)
 

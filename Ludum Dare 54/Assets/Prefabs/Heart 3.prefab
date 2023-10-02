@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartPickSize: 0.015
-  heartIcon: {fileID: 2594995904664474953, guid: 6378e008bdef04600a81a321e19776da, type: 3}
+  heartIcon: {fileID: 2594995904664474953, guid: 30785f1499fb14d2aae10eb2a16db320, type: 3}
 --- !u!61 &3292691300686649386
 BoxCollider2D:
   m_ObjectHideFlags: 0

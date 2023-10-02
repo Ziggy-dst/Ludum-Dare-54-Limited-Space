@@ -29,16 +29,6 @@ public class IntersectionCheck : MonoBehaviour
         return true;
     }
 
-    public bool NoneInInventory()
-    {
-        foreach (var col in singleGridColliders)
-        {
-            if (col.isCollidingInventory) return false;
-        }
-
-        return true;
-    }
-
     public bool IsPartOutViewport()
     {
         foreach (var col in singleGridColliders)

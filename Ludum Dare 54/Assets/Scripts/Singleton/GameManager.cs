@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public ViewportManager ViewportManager { get; private set; }
 
+    public int score = 0;
 
     public Action OnDraggingUI;
     public Action OnReleaseUI;
@@ -91,16 +92,16 @@ public class GameManager : MonoBehaviour
 
             case GameState.GameOver:
                 // OnGameOver();
-                PlayerController.instance.spaceShip.SetActive(true);
-                // SceneManager.LoadScene("GameOver");
+                CalculateScore();
+                SceneManager.LoadScene("GameOver");
                 // Implement logic for GameOver state
                 Debug.Log("Game Over");
                 break;
 
             case GameState.Victory:
                 // OnGameWins();
-                PlayerController.instance.spaceShip.SetActive(true);
-                // SceneManager.LoadScene("GameWins");
+                CalculateScore();
+                SceneManager.LoadScene("GameWins");
                 // Implement logic for Victory state
                 Debug.Log("You Win!");
                 break;
@@ -108,6 +109,11 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private void CalculateScore()
+    {
+        score = GameObject.Find("Inventory").transform.childCount - 3;
     }
 
     private void LoadScene()
@@ -120,7 +126,6 @@ public class GameManager : MonoBehaviour
                 // ChangeState(GameState.GamePlay);
                 GameObject.Find("Intro Animation").GetComponent<IntroAnimation>().enabled = true;
             }
-                
             else if (SceneManager.GetActiveScene().name.Equals("GameOver") ||
                      SceneManager.GetActiveScene().name.Equals("GameWins"))
             {
