@@ -96,37 +96,16 @@ ScriptedImporter:
   rigSpriteImportData:
   - name: Dir
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 300
-      y: 4
-      width: 6
-      height: 143
-    spriteID: 85dda2c4ee115384aa2e7fc062eb95c0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 299, y: 3}
-    spritePosition: {x: 142, y: 143}
-  - name: danger
-    originalName: 
-    pivot: {x: 0.109346375, y: 0.8979258}
+    pivot: {x: 0.5, y: -2.7}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 300
-      width: 151
-      height: 150
-    spriteID: 0262bd28844c6814f9c97f9127a44eed
+      y: 430
+      width: 6
+      height: 29
+    spriteID: 8c28a0cfcef091c47a7287ebb6fe5fba
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -134,20 +113,20 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 300}
-    spritePosition: {x: 127, y: 10}
-  - name: Body
+    uvTransform: {x: 3, y: 429}
+    spritePosition: {x: 211, y: 312}
+  - name: red
     originalName: 
-    pivot: {x: 0.9213245, y: 0.09551025}
+    pivot: {x: 0.05, y: 1}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 164
-      y: 300
-      width: 125
-      height: 125
-    spriteID: 5a97c33b9a8499f468c290b983e802b5
+      x: 4
+      y: 336
+      width: 86
+      height: 86
+    spriteID: aa8d0be30c69ee64a8ff918a4af4f857
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -155,9 +134,30 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 163, y: 300}
-    spritePosition: {x: 27, y: 136}
-  - name: Circle_Outer
+    uvTransform: {x: 4, y: 336}
+    spritePosition: {x: 210, y: 148}
+  - name: green
+    originalName: 
+    pivot: {x: 0.95, y: 0.1}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 98
+      y: 336
+      width: 86
+      height: 86
+    spriteID: b2ceeef7e1573e2448719c88d299ab27
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 98, y: 336}
+    spritePosition: {x: 132, y: 226}
+  - name: circle_bg
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -167,8 +167,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 288
-      height: 288
-    spriteID: 79564f549633c8c4380b61b018214f63
+      height: 324
+    spriteID: 7d552ebca71677b499061802007ea0df
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -177,7 +177,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 0, y: 0}
+    spritePosition: {x: 34, y: 18}
   characterData:
     bones: []
     parts: []
@@ -248,12 +248,12 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: bg_draft
+  - name: Radar_new
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 93f712fc28c4e4644a70c1949e8f7b96
-    layerID: 41
+    spriteID: 025cba94c0be8cf41a16bb4be02b086c
+    layerID: 91
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
@@ -262,162 +262,42 @@ ScriptedImporter:
     spriteName: Dir
     isGroup: 0
     parentIndex: 0
-    spriteID: 85dda2c4ee115384aa2e7fc062eb95c0
-    layerID: 31
-    mosaicPosition: {x: 300, y: 4}
+    spriteID: 8c28a0cfcef091c47a7287ebb6fe5fba
+    layerID: 90
+    mosaicPosition: {x: 4, y: 430}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: danger
-    spriteName: danger
+  - name: red
+    spriteName: red
     isGroup: 0
     parentIndex: 0
-    spriteID: 0262bd28844c6814f9c97f9127a44eed
-    layerID: 40
-    mosaicPosition: {x: 4, y: 300}
+    spriteID: aa8d0be30c69ee64a8ff918a4af4f857
+    layerID: 89
+    mosaicPosition: {x: 4, y: 336}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Body
-    spriteName: Body
+  - name: green
+    spriteName: green
     isGroup: 0
     parentIndex: 0
-    spriteID: 5a97c33b9a8499f468c290b983e802b5
-    layerID: 35
-    mosaicPosition: {x: 163, y: 300}
+    spriteID: b2ceeef7e1573e2448719c88d299ab27
+    layerID: 85
+    mosaicPosition: {x: 98, y: 336}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Circle_Outer
-    spriteName: Circle_Outer
+  - name: circle_bg
+    spriteName: circle_bg
     isGroup: 0
     parentIndex: 0
-    spriteID: 79564f549633c8c4380b61b018214f63
-    layerID: 30
+    spriteID: 7d552ebca71677b499061802007ea0df
+    layerID: 81
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: bg_draft
-    spriteName: 
-    isGroup: 1
-    parentIndex: -1
-    spriteID: bdad4bc53555621498dae0e72cebd896
-    layerID: 6
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 0
-  - name: danger
-    spriteName: 
-    isGroup: 1
-    parentIndex: 5
-    spriteID: df765f8f7b9e20944a9d377dcf1aa877
-    layerID: 26
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: Body_outer
-    spriteName: 
-    isGroup: 0
-    parentIndex: 6
-    spriteID: 72d296f96867d4d4dbbe465576bb2f3a
-    layerID: 27
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: Body_outer
-    spriteName: 
-    isGroup: 0
-    parentIndex: 6
-    spriteID: 4e5dd00a27e9d314c9a6ba9aec2d5351
-    layerID: 25
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: Body_inner
-    spriteName: 
-    isGroup: 0
-    parentIndex: 6
-    spriteID: e6c06f73d1c68db4f9f627d6b4ed749d
-    layerID: 24
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 0
-  - name: Body
-    spriteName: 
-    isGroup: 1
-    parentIndex: 5
-    spriteID: 3cc7834977163ea4abf0a0f1e3408b1d
-    layerID: 19
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: Body_outer
-    spriteName: 
-    isGroup: 0
-    parentIndex: 10
-    spriteID: 5f518c93b1a330b4792f0617966be3d1
-    layerID: 18
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: Body_inner
-    spriteName: 
-    isGroup: 0
-    parentIndex: 10
-    spriteID: 7f11ebae2bfa39f4bba8f1a200dd974c
-    layerID: 17
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: "\u76F4\u7EBF 1"
-    spriteName: 
-    isGroup: 0
-    parentIndex: 5
-    spriteID: ca8ee8476c712514eac89d4b0ac0aeda
-    layerID: 22
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: Circle_Outer
-    spriteName: 
-    isGroup: 0
-    parentIndex: 5
-    spriteID: 73c0638baa4d2874ea9cf8ee82d5e8a9
-    layerID: 14
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: bg
-    spriteName: 
-    isGroup: 0
-    parentIndex: 5
-    spriteID: e99cdc89fd4222f42805087a97f58ef6
-    layerID: 4
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: "\u56FE\u5C42 1"
-    spriteName: 
-    isGroup: 0
-    parentIndex: -1
-    spriteID: efefb75a4942d1d44b08f98d7dc0336b
-    layerID: 2
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 0
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
   importFileNodeState: 1

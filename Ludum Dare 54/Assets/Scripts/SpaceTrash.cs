@@ -19,7 +19,9 @@ public class SpaceTrash : MonoBehaviour
 
     public Transform trash;
 
-    public Transform trail;
+    // public Transform trail;
+
+    public AudioClip impactClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,8 +47,21 @@ public class SpaceTrash : MonoBehaviour
             player.GetComponent<Rigidbody2D>()
                 .AddForce((player.transform.position - transform.position).normalized * hitForce, ForceMode2D.Impulse);
             trash.DOKill();
+            
+            AudioSource audioSource = col.gameObject.AddComponent<AudioSource>();
+            audioSource.clip = impactClip;
+            audioSource.spatialBlend = 0;
+            audioSource.Play();
+            StartCoroutine(SelfDestroy(audioSource));
+            
             Destroy(gameObject);
         }
+    }
+    
+    IEnumerator SelfDestroy(AudioSource audioSource)
+    {
+        yield return new WaitForSeconds(5f);
+        Destroy(audioSource);
     }
 
     void SelfDestroy()

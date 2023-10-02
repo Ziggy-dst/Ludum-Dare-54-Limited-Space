@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,13 +19,20 @@ public class PlayerController : MonoBehaviour
     public List<Collider2D> nearbyBodies;
     public GameObject nearestBody;
     public float nearestBodyDistance;
+    public TextMeshPro bodyDistanceDisplay;
 
     public List<Collider2D> nearbyDangers;
     public GameObject nearestDanger;
     public float nearestDangerDistance;
+    public TextMeshPro dangerDistanceDisplay;
 
     public SpriteRenderer fireSpriteRenderer;
     public GameObject playerSprite;
+
+    public TextMeshPro playerLine;
+    public List<string> lines;
+
+    public List<AudioClip> spraySounds;
 
     void Start()
     {
@@ -41,6 +50,27 @@ public class PlayerController : MonoBehaviour
         }
         Brake();
         DetectNearby();
+        bodyDistanceDisplay.text = nearestBodyDistance.ToString("F");
+        if (nearestDangerDistance < 40)
+        {
+            dangerDistanceDisplay.text = nearestDangerDistance.ToString("F");
+        }
+        else
+        {
+            dangerDistanceDisplay.text = "";
+        }
+
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) ||
+            Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.LeftArrow) ||
+            Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow) ||
+            Input.GetKeyDown(KeyCode.DownArrow)) 
+        {
+            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.clip = spraySounds[Random.Range(0, spraySounds.Count)];
+            audioSource.spatialBlend = 0;
+            audioSource.Play();
+            StartCoroutine(SelfDestroy(audioSource));
+        }
     }
 
     void FixedUpdate()
@@ -71,7 +101,24 @@ public class PlayerController : MonoBehaviour
         {
             friction = moveFriction;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.clip = spraySounds[Random.Range(0, spraySounds.Count)];
+            audioSource.spatialBlend = 0;
+            audioSource.Play();
+            StartCoroutine(SelfDestroy(audioSource));
+        }
     }
+
+    IEnumerator SelfDestroy(AudioSource audioSource)
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(audioSource);
+    }
+
+  
 
     void DetectNearby()
     {
