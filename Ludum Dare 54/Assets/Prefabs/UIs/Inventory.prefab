@@ -132,6 +132,7 @@ MonoBehaviour:
   objectSize: {x: 11, y: 9}
   cellSize: 1
   isDragging: 0
+  inViewport: 0
   canDrop: 1
   intersectionCheck: {fileID: 0}
   horizontalEdgePos: 22.75
@@ -168,7 +169,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.0140993595}
+  m_Offset: {x: 0.022769928, y: -0.014099121}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -179,7 +180,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.620384, y: 8.6334095}
+  m_Size: {x: 10.64653, y: 8.6334095}
   m_EdgeRadius: 0
 --- !u!1 &6688938767116185570
 GameObject:
@@ -226,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456978387aa7a439e94074d5e632b9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startGridPos: {x: -18.5, y: 3.5}
+  startGridPos: {x: -18, y: 3}
   cellSize: 1
   gridPrefab: {fileID: 2062995095837845388, guid: e6d22f9cfc01d41e68acbd69ab6f138c, type: 3}
   col: 9
@@ -361,7 +362,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.0066999793}
+  m_Offset: {x: 0.0019156188, y: 0.022409678}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -372,7 +373,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.98660004}
+  m_Size: {x: 0.92283344, y: 1.0227125}
   m_EdgeRadius: 0
 --- !u!1 &8907924083365922561
 GameObject:
