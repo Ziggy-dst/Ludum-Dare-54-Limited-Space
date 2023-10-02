@@ -8,6 +8,8 @@ public class Heart : MonoBehaviour
     private Camera spaceCam;
 
     public float heartPickSize;
+
+    public GameObject[] heartIcons;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,9 +32,12 @@ public class Heart : MonoBehaviour
 
         if ((heartPos - mousePos).magnitude < heartPickSize)  
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 print("Picked Up!");
+
+                // instantiate heart icon
+                Instantiate(heartIcons[Random.Range(0, heartIcons.Length - 1)], heartPos, Quaternion.identity);
             }
         }
     }
