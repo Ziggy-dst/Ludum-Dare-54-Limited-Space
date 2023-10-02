@@ -14,6 +14,7 @@ TagManager:
   - ItemGrid
   - Track
   - Satellite
+  - InventoryShape
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - UI
   - Knife Cam Visible
   - Not In Space
-  - 
+  - Heart
   - 
   - 
   - 
