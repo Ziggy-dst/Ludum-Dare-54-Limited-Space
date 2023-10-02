@@ -23,8 +23,9 @@ public class DraggableObject : MonoBehaviour
 
     public IntersectionCheck intersectionCheck;
 
-    void Update()
+    protected virtual void Update()
     {
+        // if (DraggableItem.objectBeingDragged != null) return;
         CalculateNewPosition();
         Drag();
     }
