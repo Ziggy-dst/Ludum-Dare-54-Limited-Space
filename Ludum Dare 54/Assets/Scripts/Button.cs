@@ -27,7 +27,7 @@ public class Button : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0))
             {
-                GameManager.Instance.OnGameWins();
+                GameManager.Instance.ChangeState(GameManager.GameState.Victory);
             }
         }
         else

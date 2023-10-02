@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
             Invoke("ResetDamageLock", damageCooldownInterval);
         }
 
-        // if (oxygenPoint < 0) GameManager.Instance.OnGameOver();
+        if (oxygenPoint < 0) GameManager.Instance.ChangeState(GameManager.GameState.GameOver);
     }
 
     void ResetDamageLock()
