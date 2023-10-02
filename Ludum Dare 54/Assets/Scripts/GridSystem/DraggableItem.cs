@@ -5,6 +5,8 @@ using UnityEngine;
 public class DraggableItem : DraggableObject
 {
     private bool inInventory = false;
+    public List<AudioClip> pickUpSounds;
+    public List<AudioClip> dropDownSounds;
 
     protected override void OnMouseDown()
     {
@@ -13,6 +15,12 @@ public class DraggableItem : DraggableObject
 
         originalPosition = transform.position;
         offset = (Vector2)transform.position - (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
+        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = pickUpSounds[Random.Range(0, pickUpSounds.Count)];
+        audioSource.spatialBlend = 0;
+        audioSource.Play();
+        StartCoroutine(SelfDestroy(audioSource));
     }
 
     protected override void OnMouseUp()
@@ -32,6 +40,18 @@ public class DraggableItem : DraggableObject
                 canDrop = true;
             }
         }
+        
+        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = dropDownSounds[Random.Range(0, dropDownSounds.Count)];
+        audioSource.spatialBlend = 0;
+        audioSource.Play();
+        StartCoroutine(SelfDestroy(audioSource));
+    }
+    
+    IEnumerator SelfDestroy(AudioSource audioSource)
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(audioSource);
     }
 
     // TODO: add to inventory => add as parent

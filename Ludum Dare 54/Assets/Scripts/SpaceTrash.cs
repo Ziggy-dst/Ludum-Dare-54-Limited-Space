@@ -56,10 +56,15 @@ public class SpaceTrash : MonoBehaviour
             audioSource.spatialBlend = 0;
             audioSource.Play();
             StartCoroutine(SelfDestroy(audioSource));
-            
-            Destroy(gameObject);
+
+            SelfDestroy();
         }
     }
+
+    // private void OnDestroy()
+    // {
+    //     StartCoroutine(SelfDestroy(audioSource));
+    // }
     
     IEnumerator SelfDestroy(AudioSource audioSource)
     {

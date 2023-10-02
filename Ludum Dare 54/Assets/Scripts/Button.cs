@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Button : MonoBehaviour
@@ -23,11 +25,18 @@ public class Button : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 spriteRenderer.sprite = buttonPressed;
+                
+                PressedFunction();
             }
         }
         else
         {
             spriteRenderer.sprite = buttonIdle;
         }
+    }
+
+    void PressedFunction()
+    {
+        throw new NotImplementedException();
     }
 }
