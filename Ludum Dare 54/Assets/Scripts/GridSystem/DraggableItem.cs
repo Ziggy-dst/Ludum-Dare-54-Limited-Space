@@ -7,6 +7,7 @@ public class DraggableItem : DraggableObject
 {
     private bool inInventory = false;
     private Transform inventory;
+    private bool isBlocked = false;
 
     public static GameObject objectBeingDragged;
 
@@ -76,8 +77,9 @@ public class DraggableItem : DraggableObject
             if (inInventory)
             {
                 // check if all of the item in the inventory
-                if (intersectionCheck.IsAllInInventory()) canDrop = true;
+                if (intersectionCheck.IsAllInInventory() & !isBlocked) canDrop = true;
                 else canDrop = false;
+
                 // if (GetComponent<SpriteRenderer>() != null) GetComponent<SpriteRenderer>().sortingOrder = 2;
                 if (canDrop)
                 {
@@ -163,7 +165,8 @@ public class DraggableItem : DraggableObject
         if (!isDragging) return;
         if (col.tag.Equals("Item"))
         {
-            if (col.GetComponent<DraggableItem>().inInventory) canDrop = false;
+            // if (col.GetComponent<DraggableItem>().inInventory)
+            isBlocked = true;
         }
     }
 
@@ -179,11 +182,11 @@ public class DraggableItem : DraggableObject
             inInventory = true;
         }
 
-        if (!isDragging) return;
-        if (col.tag.Equals("Item"))
-        {
-            if (col.GetComponent<DraggableItem>().inInventory) canDrop = false;
-        }
+        // if (!isDragging) return;
+        // if (col.tag.Equals("Item"))
+        // {
+        //     if (col.GetComponent<DraggableItem>().inInventory) isBlocked = true;
+        // }
     }
 
     private void OnTriggerExit2D(Collider2D col)
@@ -201,7 +204,8 @@ public class DraggableItem : DraggableObject
         if (!isDragging) return;
         if (col.tag.Equals("Item"))
         {
-            if (col.GetComponent<DraggableItem>().inInventory) canDrop = true;
+            // if (col.GetComponent<DraggableItem>().inInventory)
+            isBlocked = false;
         }
     }
 
