@@ -9,7 +9,7 @@ public class Heart : MonoBehaviour
 
     public float heartPickSize;
 
-    public GameObject[] heartIcons;
+    public GameObject heartIcon;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +37,7 @@ public class Heart : MonoBehaviour
                 print("Picked Up!");
 
                 // instantiate heart icon
-                Instantiate(heartIcons[Random.Range(0, heartIcons.Length - 1)], heartPos, Quaternion.identity);
+                Instantiate(heartIcon, heartPos, Quaternion.identity);
                 Destroy(gameObject);
             }
         }

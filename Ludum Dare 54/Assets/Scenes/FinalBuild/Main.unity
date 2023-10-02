@@ -6008,9 +6008,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1599689653}
     - target: {fileID: 6514279219016859625, guid: 0c91a96f98df8cc48abe2004b90c09d8, type: 3}
+      propertyPath: hearts.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6514279219016859625, guid: 0c91a96f98df8cc48abe2004b90c09d8, type: 3}
       propertyPath: cutSounds.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6514279219016859625, guid: 0c91a96f98df8cc48abe2004b90c09d8, type: 3}
+      propertyPath: hearts.Array.data[0]
+      value: 
+      objectReference: {fileID: 2594995904664474953, guid: 6378e008bdef04600a81a321e19776da, type: 3}
+    - target: {fileID: 6514279219016859625, guid: 0c91a96f98df8cc48abe2004b90c09d8, type: 3}
+      propertyPath: hearts.Array.data[1]
+      value: 
+      objectReference: {fileID: 724937127190500891, guid: 47b7c311831b34b7b9736a20b5e71de9, type: 3}
+    - target: {fileID: 6514279219016859625, guid: 0c91a96f98df8cc48abe2004b90c09d8, type: 3}
+      propertyPath: hearts.Array.data[2]
+      value: 
+      objectReference: {fileID: 2594995904664474953, guid: 39ef6eee42ea74033a334f880c9b0aae, type: 3}
+    - target: {fileID: 6514279219016859625, guid: 0c91a96f98df8cc48abe2004b90c09d8, type: 3}
+      propertyPath: hearts.Array.data[3]
+      value: 
+      objectReference: {fileID: 5930322925622161446, guid: ce31822c21ef64f7584062bba7310ad7, type: 3}
     - target: {fileID: 6514279219016859625, guid: 0c91a96f98df8cc48abe2004b90c09d8, type: 3}
       propertyPath: renderTextureTransform
       value: 

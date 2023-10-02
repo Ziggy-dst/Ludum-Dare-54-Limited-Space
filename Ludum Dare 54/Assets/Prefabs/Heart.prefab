@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2612256238171661983
 Transform:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 5660890142619359237}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.163033, y: 0.2306188, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -160,7 +160,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 548f976e3eb2a1b469c620015f58efcd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 10a3f4f158a8a48188d4406e1cfec8de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -184,10 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartPickSize: 0.015
-  heartIcons:
-  - {fileID: 724937127190500891, guid: 47b7c311831b34b7b9736a20b5e71de9, type: 3}
-  - {fileID: 2594995904664474953, guid: 39ef6eee42ea74033a334f880c9b0aae, type: 3}
-  - {fileID: 5930322925622161446, guid: ce31822c21ef64f7584062bba7310ad7, type: 3}
+  heartIcon: {fileID: 5930322925622161446, guid: ce31822c21ef64f7584062bba7310ad7, type: 3}
 --- !u!61 &3292691300686649386
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -224,7 +221,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.56, y: 0.7}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.56, y: 0.7}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

@@ -38,7 +38,7 @@ public class SingleGrid : MonoBehaviour
     {
         // Ensure both colliders are BoxCollider2D
 
-        BoxCollider2D otherBox = other as BoxCollider2D;
+        Collider2D otherBox = other;
         Collider2D thisBox = GetComponent<Collider2D>();
 
         // Calculate overlapping area

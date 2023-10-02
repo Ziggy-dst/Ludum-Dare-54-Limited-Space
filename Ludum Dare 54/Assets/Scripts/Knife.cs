@@ -27,7 +27,7 @@ public class Knife : MonoBehaviour
 
     public List<AudioClip> cutSounds;
 
-    public GameObject heart;
+    public GameObject[] hearts;
 
     private bool isCutting = false;
     // Start is called before the first frame update
@@ -97,7 +97,7 @@ public class Knife : MonoBehaviour
 
     void DropHeart()
     {
-        Instantiate(heart, PlayerController.instance.nearestBody.transform.position,
+        Instantiate(hearts[Random.Range(0, hearts.Length-1)], PlayerController.instance.nearestBody.transform.position,
             Quaternion.Euler(0, 0, Random.Range(0, 360f)));
     }
 
