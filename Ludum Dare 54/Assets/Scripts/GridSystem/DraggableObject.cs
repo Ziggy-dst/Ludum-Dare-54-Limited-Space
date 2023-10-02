@@ -23,7 +23,7 @@ public class DraggableObject : MonoBehaviour
 
     public IntersectionCheck intersectionCheck;
 
-    void Update()
+    protected virtual void Update()
     {
         CalculateNewPosition();
         Drag();
@@ -39,41 +39,9 @@ public class DraggableObject : MonoBehaviour
         if (isDragging) transform.position = new Vector2(newPosition.x, newPosition.y);
     }
 
-    protected void CheckStackColliders()
-    {
-        // if (Input.GetMouseButtonDown(0))
-        // {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            LayerMask layerMask = LayerMask.GetMask("Not In Space", "Heart");
-            RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos, Vector2.zero, layerMask);
-
-            print(hits);
-
-            if (hits.Length == 1) return;
-
-            List<GameObject> objectStack = new List<GameObject>();
-            bool hasItem = false;
-
-            foreach (var hit in hits)
-            {
-                if (hit.collider.tag.Equals("Item")) hasItem = true;
-                objectStack.Add(hit.collider.gameObject);
-            }
-
-            foreach (var obj in objectStack)
-            {
-                if (obj.tag.Equals("PlayableUI"))
-                {
-                    if (hasItem) obj.GetComponent<Collider2D>().isTrigger = false;
-                    else obj.GetComponent<Collider2D>().isTrigger = true;
-                }
-            }
-    }
-
     protected virtual void OnMouseDown()
     {
         isDragging = true;
-        CheckStackColliders();
         if (GetComponent<SpriteRenderer>() != null) GetComponent<SpriteRenderer>().sortingOrder = 999;
 
         originalPosition = transform.position;
