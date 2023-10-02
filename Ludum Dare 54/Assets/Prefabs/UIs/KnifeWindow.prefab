@@ -196,7 +196,11 @@ MonoBehaviour:
   cutSounds:
   - {fileID: 8300000, guid: 0b1e80e448f8c5745b1180e8b4245a77, type: 3}
   - {fileID: 8300000, guid: 7b36b936e49170c478c122c030a4edc2, type: 3}
-  heart: {fileID: 5660890142619359237, guid: ba1d88d6cb4ef54489c7d85e3e73cd65, type: 3}
+  hearts:
+  - {fileID: 5660890142619359237, guid: ba1d88d6cb4ef54489c7d85e3e73cd65, type: 3}
+  - {fileID: 5660890142619359237, guid: ad1b3005516ae4536949dacbad3dcc68, type: 3}
+  - {fileID: 5660890142619359237, guid: 09ab2b1f08aa140839d71a0d85e5e88d, type: 3}
+  - {fileID: 5660890142619359237, guid: 120046a5bbe7d4c6ea169ce75d806d17, type: 3}
 --- !u!61 &2999923795261521363
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -257,6 +261,7 @@ MonoBehaviour:
   objectSize: {x: 3, y: 3}
   cellSize: 1
   isDragging: 0
+  inViewport: 0
   canDrop: 1
   intersectionCheck: {fileID: 0}
   horizontalEdgePos: 22.75
