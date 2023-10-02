@@ -739,6 +739,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2382750656794613423, guid: 6378e008bdef04600a81a321e19776da, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 36cfb3e8c40664aea8970f77c30269d1, type: 3}
     - target: {fileID: 2594995904664474953, guid: 6378e008bdef04600a81a321e19776da, type: 3}
       propertyPath: m_Name
       value: Heart(L Shape)
@@ -782,6 +786,22 @@ PrefabInstance:
     - target: {fileID: 3630137987239801994, guid: 6378e008bdef04600a81a321e19776da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875833681594954573, guid: 6378e008bdef04600a81a321e19776da, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875833681594954573, guid: 6378e008bdef04600a81a321e19776da, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323433757080278616, guid: 6378e008bdef04600a81a321e19776da, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323433757080278616, guid: 6378e008bdef04600a81a321e19776da, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
