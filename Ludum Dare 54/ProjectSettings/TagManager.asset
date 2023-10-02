@@ -8,7 +8,8 @@ TagManager:
   - Danger
   - PlayableUI
   - Grid
-  - Viewport
+  - Item
+  - ScreenBound
   layers:
   - Default
   - TransparentFX
