@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456978387aa7a439e94074d5e632b9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startGridPos: {x: -8.5, y: 4.5}
+  startGridPos: {x: -8, y: 4}
   cellSize: 1
   gridPrefab: {fileID: 2062995095837845388, guid: 1607f585d38c240f6b4932b4d377c8dd, type: 3}
   col: 17
@@ -1140,8 +1140,16 @@ PrefabInstance:
       value: Inventory
       objectReference: {fileID: 0}
     - target: {fileID: 5116970719281395071, guid: 7e4263bdec51240928bdfc72349febca, type: 3}
+      propertyPath: col
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116970719281395071, guid: 7e4263bdec51240928bdfc72349febca, type: 3}
+      propertyPath: row
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116970719281395071, guid: 7e4263bdec51240928bdfc72349febca, type: 3}
       propertyPath: startGridPos.x
-      value: -19
+      value: -18
       objectReference: {fileID: 0}
     - target: {fileID: 8907924083365922561, guid: 7e4263bdec51240928bdfc72349febca, type: 3}
       propertyPath: m_IsActive

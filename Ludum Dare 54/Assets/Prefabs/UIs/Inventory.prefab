@@ -226,10 +226,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456978387aa7a439e94074d5e632b9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startGridPos: {x: -19, y: 3.5}
+  startGridPos: {x: -18.5, y: 3.5}
   cellSize: 1
   gridPrefab: {fileID: 2062995095837845388, guid: e6d22f9cfc01d41e68acbd69ab6f138c, type: 3}
-  col: 10
+  col: 9
   row: 7
   isHiding: 0
 --- !u!156049354 &1615687216732214071
