@@ -29,19 +29,25 @@ public class EndingAnimation : MonoBehaviour
                 particles.gameObject.SetActive(true);
                 Sequence endingAnimation2 = DOTween.Sequence();
                 endingAnimation2
-                    .Append(cannon.DOShakePosition(1f,0.25F,2))
+                    .Append(cannon.DOShakePosition(1f,0.25F,10))
                     .Insert(0, player.DOMove(playerInitialPos, 1f))
                     .AppendInterval(4)
                     .Append(stars.DOMove(Vector3.down * 15, 10f).SetEase(Ease.Linear))
-                    .Insert(5,result.DOText("That was " + GameManager.Instance.score + ".",2f));
+                    .Insert(7,result.DOText("That was " + GameManager.Instance.score + ".",3f))
+                    .Append(result.DOFade(0,1f))
+                    .OnComplete((() =>
+                    {
+                        GameManager.Instance.ChangeState(GameManager.GameState.MainMenu);
+                        SceneManager.LoadScene("Menu");
+                    }));
             }));
-        // .Append(title.)
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        fInstruction.DOKill();
+        fInstruction.gameObject.SetActive(false);
     }
 }

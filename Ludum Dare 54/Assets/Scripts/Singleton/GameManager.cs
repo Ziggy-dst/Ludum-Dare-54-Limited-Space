@@ -93,15 +93,18 @@ public class GameManager : MonoBehaviour
             case GameState.GameOver:
                 // OnGameOver();
                 CalculateScore();
-                SceneManager.LoadScene("GameOver");
+                // SceneManager.LoadScene("GameOver");
+                PlayerController.instance.spaceShip.SetActive(true);
                 // Implement logic for GameOver state
                 Debug.Log("Game Over");
                 break;
 
             case GameState.Victory:
                 // OnGameWins();
+                PlayerController.instance.spaceShip.SetActive(true);
+                    // SceneManager.LoadScene("GameWins");
                 CalculateScore();
-                SceneManager.LoadScene("GameWins");
+                // SceneManager.LoadScene("GameWins");
                 // Implement logic for Victory state
                 Debug.Log("You Win!");
                 break;
@@ -126,11 +129,19 @@ public class GameManager : MonoBehaviour
                 // ChangeState(GameState.GamePlay);
                 GameObject.Find("Intro Animation").GetComponent<IntroAnimation>().enabled = true;
             }
-            else if (SceneManager.GetActiveScene().name.Equals("GameOver") ||
-                     SceneManager.GetActiveScene().name.Equals("GameWins"))
+            // else if (SceneManager.GetActiveScene().name.Equals("GameOver") ||
+            //          SceneManager.GetActiveScene().name.Equals("GameWins"))
+            // {
+            //     SceneManager.LoadScene("Menu");
+            //     ChangeState(GameState.MainMenu);
+            // }
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (SceneManager.GetActiveScene().name.Equals("GameOver"))
             {
-                SceneManager.LoadScene("Menu");
-                ChangeState(GameState.MainMenu);
+                GameObject.Find("Ending Animation").GetComponent<EndingAnimation>().enabled = true;
             }
         }
     }
