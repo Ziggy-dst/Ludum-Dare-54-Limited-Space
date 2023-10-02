@@ -23,7 +23,7 @@ public class IntroAnimation : MonoBehaviour
             .Append(spaceShip.DOMove(Vector3.up * 12f, 6f)).SetEase(Ease.InQuad)
             .OnComplete((() =>
             {
-                SceneManager.LoadScene("Main");
+                SceneManager.LoadScene("Main Spawn Ver");
                 GameManager.Instance.ChangeState(GameManager.GameState.GamePlay);
             }));
     }
