@@ -46,7 +46,7 @@ public class StarSystemSpawner : MonoBehaviour
         GameObject initialBody;
 
         initialBody = Instantiate(starSystemPrefabList[Random.Range(0, starSystemPrefabList.Count)], initialSpawnPos,
-            Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360f))));
+            Quaternion.Euler(Vector3.zero));
         initialBody.transform.parent = starSystemsParent;
         starSystemInstancePool.Add(initialBody);
 

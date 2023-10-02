@@ -22,10 +22,13 @@ public class Knife : MonoBehaviour
     public Sprite idle;
     
     public Sprite clicked;
+
+    private DraggableUI draggableUI;
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        draggableUI = GetComponent<DraggableUI>();
     }
 
     // Update is called once per frame
@@ -39,7 +42,7 @@ public class Knife : MonoBehaviour
             if ((knifeCam.WorldToViewportPoint(PlayerController.instance.nearestBody.transform.position) -
                  Camera.main.WorldToViewportPoint(transform.position)).magnitude <= heartHitSize)
             {
-                if (Input.GetKeyDown(knifeKey))
+                if (Input.GetKeyDown(knifeKey) && !draggableUI.isDragging)
                 {
                     spriteRenderer.sprite = clicked;
                     Invoke("ResetCrosshair", 3f);
