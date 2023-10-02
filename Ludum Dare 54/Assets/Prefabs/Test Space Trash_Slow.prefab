@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 1119417822398765843}
   - component: {fileID: 230403744975744862}
   m_Layer: 0
-  m_Name: Test Space Trash
+  m_Name: Test Space Trash_Slow
   m_TagString: Danger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,11 +269,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a916d0c5d1cd934dace2d393ebde966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitForce: 100
-  moveSpeed: 5
-  destroyTime: 20
+  hitForce: 500
+  moveSpeed: 1
+  destroyTime: 40
   trash: {fileID: 2887030970059426076}
-  damage: 1
+  damage: 5
   impactClip: {fileID: 8300000, guid: 3af45e60053c09a4989f896ade740e29, type: 3}
 --- !u!50 &1119417822398765843
 Rigidbody2D:
