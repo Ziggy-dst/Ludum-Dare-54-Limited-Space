@@ -1149,7 +1149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5116970719281395071, guid: 7e4263bdec51240928bdfc72349febca, type: 3}
       propertyPath: startGridPos.x
-      value: -18
+      value: -18.5
       objectReference: {fileID: 0}
     - target: {fileID: 8907924083365922561, guid: 7e4263bdec51240928bdfc72349febca, type: 3}
       propertyPath: m_IsActive

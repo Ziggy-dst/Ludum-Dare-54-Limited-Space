@@ -113,10 +113,10 @@ public class DraggableItem : DraggableObject
         Vector2 localPosition = transform.parent.InverseTransformPoint(position);
 
         float adjustedX = localPosition.x - objectSize.x / 2f + 0.5f;
-        float adjustedY = localPosition.y - objectSize.y / 2f;
+        float adjustedY = localPosition.y - objectSize.y / 2f + 0.5f;
 
         float x = Mathf.Round(adjustedX / cellSize) * cellSize + objectSize.x / 2f - 0.5f;
-        float y = Mathf.Round(adjustedY / cellSize) * cellSize + objectSize.y / 2f;
+        float y = Mathf.Round(adjustedY / cellSize) * cellSize + objectSize.y / 2f - 0.5f;
 
         return new Vector2(x, y);
     }
