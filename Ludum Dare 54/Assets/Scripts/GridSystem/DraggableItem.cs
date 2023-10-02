@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,29 @@ public class DraggableItem : DraggableObject
 
     public static GameObject objectBeingDragged;
 
+    private void Start()
+    {
+        GameManager.Instance.OnReleaseUI += CheckViewportOverlap;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnReleaseUI -= CheckViewportOverlap;
+    }
+
     protected override void Update()
     {
         DragItem();
+    }
+
+    private void CheckViewportOverlap()
+    {
+        if (intersectionCheck.IsPartOutViewport()) inViewport = false;
+        else inViewport = true;
+
+        if (!inViewport) Destroy(gameObject);
+
+        print(inViewport);
     }
 
     private void DragItem()
@@ -46,8 +67,13 @@ public class DraggableItem : DraggableObject
             objectBeingDragged = null;
             if (GetComponent<SpriteRenderer>() != null) GetComponent<SpriteRenderer>().sortingOrder = 1002;
 
+            CheckViewportOverlap();
+
             if (inInventory)
             {
+                // check if all of the item in the inventory
+                if (intersectionCheck.IsAllInInventory()) canDrop = true;
+                else canDrop = false;
                 // if (GetComponent<SpriteRenderer>() != null) GetComponent<SpriteRenderer>().sortingOrder = 2;
                 if (canDrop)
                 {
