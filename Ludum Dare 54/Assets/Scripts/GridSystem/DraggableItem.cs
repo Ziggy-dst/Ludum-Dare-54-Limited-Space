@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 public class DraggableItem : DraggableObject
@@ -13,6 +14,7 @@ public class DraggableItem : DraggableObject
 
     public List<AudioClip> pickUpSounds;
     public List<AudioClip> dropDownSounds;
+    public List<AudioClip> destroySounds;
     
     private void Start()
     {
@@ -34,7 +36,18 @@ public class DraggableItem : DraggableObject
         if (intersectionCheck.IsPartOutViewport()) inViewport = false;
         else inViewport = true;
 
-        if (!inViewport) Destroy(gameObject);
+        if (!inViewport)
+        {
+            GameObject tempAudio = new GameObject();
+            tempAudio.name = "Temp Audio";
+            AudioSource audioSource = tempAudio.AddComponent<AudioSource>();
+            audioSource.clip = destroySounds[Random.Range(0, destroySounds.Count)];
+            audioSource.spatialBlend = 0;
+            audioSource.Play();
+            StartCoroutine(SelfDestroy(tempAudio));
+            
+            Destroy(gameObject);
+        }
 
         print(inViewport);
     }
@@ -60,14 +73,15 @@ public class DraggableItem : DraggableObject
                     isDragging = true;
                     offset = transform.position - mousePos;
                     objectBeingDragged = gameObject;
+                    
+                    AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+                    audioSource.clip = pickUpSounds[Random.Range(0, pickUpSounds.Count)];
+                    audioSource.spatialBlend = 0;
+                    audioSource.Play();
+                    StartCoroutine(SelfDestroy(audioSource));
                 }
             }
             // if (GetComponent<SpriteRenderer>() != null) GetComponent<SpriteRenderer>().sortingOrder = 1002;
-            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.clip = pickUpSounds[Random.Range(0, pickUpSounds.Count)];
-            audioSource.spatialBlend = 0;
-            audioSource.Play();
-            StartCoroutine(SelfDestroy(audioSource));
         }
 
         if (Input.GetMouseButtonUp(0) && objectBeingDragged == gameObject)
@@ -99,6 +113,14 @@ public class DraggableItem : DraggableObject
             }
             else
             {
+                GameObject tempAudio = new GameObject();
+                tempAudio.name = "Temp Audio";
+                AudioSource audioSource1 = tempAudio.AddComponent<AudioSource>();
+                audioSource1.clip = destroySounds[Random.Range(0, destroySounds.Count)];
+                audioSource1.spatialBlend = 0;
+                audioSource1.Play();
+                StartCoroutine(SelfDestroy(tempAudio));
+                
                 Destroy(gameObject);
             }
             
@@ -116,10 +138,16 @@ public class DraggableItem : DraggableObject
         }
     }
     
-    IEnumerator SelfDestroy(AudioSource audioSource)
+    // IEnumerator SelfDestroy(GameObject tempAudio)
+    // {
+    //     yield return new WaitForSeconds(2f);
+    //     Destroy(tempAudio);
+    // }
+    
+    IEnumerator SelfDestroy(Object obj)
     {
         yield return new WaitForSeconds(2f);
-        Destroy(audioSource);
+        Destroy(obj);
     }
 
     // protected override void OnMouseDown()

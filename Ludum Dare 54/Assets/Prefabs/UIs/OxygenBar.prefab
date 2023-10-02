@@ -352,6 +352,12 @@ MonoBehaviour:
   intersectionCheck: {fileID: 0}
   horizontalEdgePos: 22.75
   verticalEdgePos: 12
+  pickUpSounds:
+  - {fileID: 8300000, guid: 0c8709ef66c359f468dbfc4ad69184ee, type: 3}
+  - {fileID: 8300000, guid: 3b02b310bee2b3a40ae18871b4189e8d, type: 3}
+  dropDownSounds:
+  - {fileID: 8300000, guid: 7ed18bb9a0d52ed49b2b9671b972940b, type: 3}
+  - {fileID: 8300000, guid: 5ea121e4bedf46943a41bbbd9030148c, type: 3}
 --- !u!1 &8870485829449299716
 GameObject:
   m_ObjectHideFlags: 0

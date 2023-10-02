@@ -8,6 +8,8 @@ public class DraggableUI : DraggableObject
 
     public float horizontalEdgePos = 22.75f;
     public float verticalEdgePos = 12f;
+    public List<AudioClip> pickUpSounds;
+    public List<AudioClip> dropDownSounds;
 
     private enum collideEdge
     {
@@ -22,12 +24,24 @@ public class DraggableUI : DraggableObject
     {
         base.OnMouseDown();
         GameManager.Instance.OnDraggingUI();
+        
+        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = pickUpSounds[Random.Range(0, pickUpSounds.Count)];
+        audioSource.spatialBlend = 0;
+        audioSource.Play();
+        StartCoroutine(SelfDestroy(audioSource));
     }
 
     protected override void OnMouseUp()
     {
         base.OnMouseUp();
         GameManager.Instance.OnReleaseUI();
+        
+        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = dropDownSounds[Random.Range(0, dropDownSounds.Count)];
+        audioSource.spatialBlend = 0;
+        audioSource.Play();
+        StartCoroutine(SelfDestroy(audioSource));
 
         if (currentCollideEdge != collideEdge.None) ReturnToEdge();
 
@@ -47,6 +61,12 @@ public class DraggableUI : DraggableObject
         // UI: change relevant data
         // Item: destroy
         // if (intersectionCheck.maxGrids == intersectionCheck.currentActiveColliders)
+    }
+    
+    IEnumerator SelfDestroy(AudioSource audioSource)
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(audioSource);
     }
 
     private void ReturnToEdge()

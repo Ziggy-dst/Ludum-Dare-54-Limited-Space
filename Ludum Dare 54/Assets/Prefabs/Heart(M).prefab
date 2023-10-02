@@ -143,6 +143,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 639b0f4bfc7787d408a785b4ca3a81b7, type: 3}
   dropDownSounds:
   - {fileID: 8300000, guid: a610a482caecba847bfdac70f43bcfaa, type: 3}
+  destroySounds:
+  - {fileID: 8300000, guid: 178d2bdd7e0caf14397231a3b1a88600, type: 3}
 --- !u!61 &8305168613424354447
 BoxCollider2D:
   m_ObjectHideFlags: 0
