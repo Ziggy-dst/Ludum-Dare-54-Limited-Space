@@ -53,9 +53,9 @@ ScriptedImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
     normalMap: 0
     textureFormat: 0
     maxTextureSize: 0
@@ -101,10 +101,10 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 7862
-      y: 312
-      width: 123
-      height: 123
+      x: 7858
+      y: 311
+      width: 128
+      height: 126
     spriteID: ce694202fb795a344bd71ec7cb527e91
     spriteBone: []
     spriteOutline: []
@@ -122,10 +122,10 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 7862
+      x: 7859
       y: 443
-      width: 123
-      height: 123
+      width: 128
+      height: 126
     spriteID: 07aae17efb108ad41b70918f7cee8155
     spriteBone: []
     spriteOutline: []
@@ -166,7 +166,7 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4012
       y: 4
-      width: 2592
+      width: 2593
       height: 2593
     spriteID: 69e50ad280190724fa59f10770195400
     spriteBone: []
@@ -201,14 +201,14 @@ ScriptedImporter:
     spritePosition: {x: 1037, y: 1037}
   - name: track_inner
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5905211, y: 0.5758289}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 6612
+      x: 6610
       y: 4
-      width: 1242
+      width: 1245
       height: 1277
     spriteID: b61b609803e5b6d4ea6a84d1193de22b
     spriteBone: []
@@ -227,9 +227,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 6612
+      x: 6610
       y: 1289
-      width: 1054
+      width: 1058
       height: 1054
     spriteID: 82430d7306381314dbaa2a9dc0ff71c0
     spriteBone: []
