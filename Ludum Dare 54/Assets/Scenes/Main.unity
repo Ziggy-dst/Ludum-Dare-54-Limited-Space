@@ -2184,6 +2184,8 @@ MonoBehaviour:
   cellSize: 1
   isDragging: 0
   canDrop: 1
+  horizontalEdgePos: 22.75
+  verticalEdgePos: 12
 --- !u!1 &1018943604
 GameObject:
   m_ObjectHideFlags: 0
@@ -3322,6 +3324,8 @@ MonoBehaviour:
   cellSize: 1
   isDragging: 0
   canDrop: 1
+  horizontalEdgePos: 22.75
+  verticalEdgePos: 12
 --- !u!50 &1770618927
 Rigidbody2D:
   serializedVersion: 4
@@ -3651,7 +3655,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57d2564cac1ac4eaa943679b16e73aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minXMaxY: {x: 200, y: 200}
 --- !u!4 &2027363883
 Transform:
   m_ObjectHideFlags: 0

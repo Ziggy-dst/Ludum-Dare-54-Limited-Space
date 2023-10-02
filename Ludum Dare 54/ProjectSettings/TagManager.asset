@@ -8,6 +8,8 @@ TagManager:
   - Danger
   - PlayableUI
   - Grid
+  - Item
+  - ScreenBound
   - Viewport
   - Track
   - Satellite
