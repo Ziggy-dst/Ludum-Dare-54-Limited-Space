@@ -8,6 +8,7 @@ public class DraggableItem : DraggableObject
     private bool inInventory = false;
     private Transform inventory;
     private bool isBlocked = false;
+    private bool hasEnteredInventory = true;
 
     public static GameObject objectBeingDragged;
 
@@ -77,7 +78,7 @@ public class DraggableItem : DraggableObject
             if (inInventory)
             {
                 // check if all of the item in the inventory
-                print(intersectionCheck.IsAllInInventory());
+                // print(intersectionCheck.IsAllInInventory());
                 if (intersectionCheck.IsAllInInventory() & !isBlocked) canDrop = true;
                 else canDrop = false;
 

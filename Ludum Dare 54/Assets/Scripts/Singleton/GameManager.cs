@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public ViewportManager ViewportManager { get; private set; }
 
+    public int score = 0;
 
     public Action OnDraggingUI;
     public Action OnReleaseUI;
@@ -91,6 +92,7 @@ public class GameManager : MonoBehaviour
 
             case GameState.GameOver:
                 // OnGameOver();
+                CalculateScore();
                 SceneManager.LoadScene("GameOver");
                 // Implement logic for GameOver state
                 Debug.Log("Game Over");
@@ -98,6 +100,7 @@ public class GameManager : MonoBehaviour
 
             case GameState.Victory:
                 // OnGameWins();
+                CalculateScore();
                 SceneManager.LoadScene("GameWins");
                 // Implement logic for Victory state
                 Debug.Log("You Win!");
@@ -106,6 +109,11 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private void CalculateScore()
+    {
+        score = GameObject.Find("Inventory").transform.childCount - 3;
     }
 
     private void LoadScene()
