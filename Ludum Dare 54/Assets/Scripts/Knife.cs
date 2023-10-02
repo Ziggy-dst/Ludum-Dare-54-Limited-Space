@@ -26,6 +26,10 @@ public class Knife : MonoBehaviour
     private DraggableUI draggableUI;
 
     public List<AudioClip> cutSounds;
+
+    public GameObject heart;
+
+    private bool isCutting = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,8 +48,12 @@ public class Knife : MonoBehaviour
             if ((knifeCam.WorldToViewportPoint(PlayerController.instance.nearestBody.transform.position) -
                  Camera.main.WorldToViewportPoint(transform.position)).magnitude <= heartHitSize)
             {
-                if (Input.GetKeyDown(knifeKey) && !draggableUI.isDragging)
+                if (Input.GetKeyDown(knifeKey) && !draggableUI.isDragging && !isCutting)
                 {
+                    isCutting = true;
+                    
+                    GameObject body = PlayerController.instance.nearestBody;
+                    
                     spriteRenderer.sprite = clicked;
                     Invoke("ResetCrosshair", 3f);
                 
@@ -66,20 +74,31 @@ public class Knife : MonoBehaviour
                     audioSource.spatialBlend = 0;
                     audioSource.Play();
                     StartCoroutine(SelfDestroy(audioSource));
-
-
-                    PlayerController.instance.nearestBody.transform.parent.parent.DOKill();
-                    Destroy(PlayerController.instance.nearestBody.transform.parent.parent.gameObject);
-
+                    
+                    DropHeart();
+                    
+                    body.transform.parent.GetComponent<SpriteRenderer>().DOFade(0, 2);
+                    body.transform.parent.parent.GetComponent<SpriteRenderer>().DOFade(0, 2).OnComplete(() =>
+                    {
+                        body.transform.parent.parent.DOKill();
+                        Destroy(body.transform.parent.parent.gameObject);
+                        isCutting = false;
+                    });
                 }
             }
         }
     }
-    
+
     IEnumerator SelfDestroy(AudioSource audioSource)
     {
         yield return new WaitForSeconds(7f);
         Destroy(audioSource);
+    }
+
+    void DropHeart()
+    {
+        Instantiate(heart, PlayerController.instance.nearestBody.transform.position,
+            Quaternion.Euler(0, 0, Random.Range(0, 360f)));
     }
 
     void ResetCrosshair()

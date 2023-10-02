@@ -50,7 +50,17 @@ public class PlayerController : MonoBehaviour
         }
         Brake();
         DetectNearby();
-        bodyDistanceDisplay.text = nearestBodyDistance.ToString("F");
+
+
+        if (nearestBodyDistance < 99)
+        {
+            bodyDistanceDisplay.text = nearestBodyDistance.ToString("F");
+        }
+        else
+        {
+            bodyDistanceDisplay.text = "";
+        }
+        
         if (nearestDangerDistance < 40)
         {
             dangerDistanceDisplay.text = nearestDangerDistance.ToString("F");
