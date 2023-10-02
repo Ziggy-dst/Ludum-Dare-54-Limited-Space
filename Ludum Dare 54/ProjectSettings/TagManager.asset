@@ -10,6 +10,7 @@ TagManager:
   - Grid
   - Item
   - ScreenBound
+  - Viewport
   layers:
   - Default
   - TransparentFX

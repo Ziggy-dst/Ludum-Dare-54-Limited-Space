@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 274320812}
   m_Layer: 2
   m_Name: Viewport
-  m_TagString: Viewport
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2038,6 +2038,8 @@ MonoBehaviour:
   cellSize: 1
   isDragging: 0
   canDrop: 1
+  horizontalEdgePos: 22.75
+  verticalEdgePos: 12
 --- !u!1 &1018943604
 GameObject:
   m_ObjectHideFlags: 0
@@ -3176,6 +3178,8 @@ MonoBehaviour:
   cellSize: 1
   isDragging: 0
   canDrop: 1
+  horizontalEdgePos: 22.75
+  verticalEdgePos: 12
 --- !u!50 &1770618927
 Rigidbody2D:
   serializedVersion: 4
@@ -3474,6 +3478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minXMaxY: {x: 200, y: 200}
+  currentPos: {x: 0, y: 0}
 --- !u!4 &2027363883
 Transform:
   m_ObjectHideFlags: 0
