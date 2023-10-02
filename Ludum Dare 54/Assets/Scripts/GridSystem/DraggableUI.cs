@@ -45,10 +45,6 @@ public class DraggableUI : DraggableObject
                 canDrop = true;
             }
         }
-
-        // UI: change relevant data
-        // Item: destroy
-        // if (intersectionCheck.maxGrids == intersectionCheck.currentActiveColliders)
     }
 
     private void ReturnToEdge()

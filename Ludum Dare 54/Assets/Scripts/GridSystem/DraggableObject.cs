@@ -26,7 +26,6 @@ public class DraggableObject : MonoBehaviour
 
     protected virtual void Update()
     {
-        // if (DraggableItem.objectBeingDragged != null) return;
         CalculateNewPosition();
         Drag();
     }
