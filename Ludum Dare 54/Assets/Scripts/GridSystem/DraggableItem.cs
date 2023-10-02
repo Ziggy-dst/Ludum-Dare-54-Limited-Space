@@ -39,6 +39,8 @@ public class DraggableItem : DraggableObject
     {
         if (Input.GetMouseButtonDown(0))
         {
+            Cursor.visible = false;
+
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (GetComponent<SpriteRenderer>() != null) GetComponent<SpriteRenderer>().sortingOrder = 1002;
 
@@ -63,6 +65,8 @@ public class DraggableItem : DraggableObject
 
         if (Input.GetMouseButtonUp(0) && objectBeingDragged == gameObject)
         {
+            Cursor.visible = true;
+
             isDragging = false;
             objectBeingDragged = null;
             if (GetComponent<SpriteRenderer>() != null) GetComponent<SpriteRenderer>().sortingOrder = 1002;

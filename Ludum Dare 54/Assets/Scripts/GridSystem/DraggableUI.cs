@@ -21,12 +21,14 @@ public class DraggableUI : DraggableObject
     protected override void OnMouseDown()
     {
         base.OnMouseDown();
+        Cursor.visible = false;
         GameManager.Instance.OnDraggingUI();
     }
 
     protected override void OnMouseUp()
     {
         base.OnMouseUp();
+        Cursor.visible = true;
         GameManager.Instance.OnReleaseUI();
 
         if (currentCollideEdge != collideEdge.None) ReturnToEdge();
