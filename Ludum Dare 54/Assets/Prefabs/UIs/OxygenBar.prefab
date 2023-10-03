@@ -249,7 +249,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: f3bc52044c18048f18e685bc261a03ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -348,6 +348,7 @@ MonoBehaviour:
   objectSize: {x: 17, y: 2}
   cellSize: 1
   isDragging: 0
+  inViewport: 0
   canDrop: 1
   intersectionCheck: {fileID: 0}
   horizontalEdgePos: 22.75

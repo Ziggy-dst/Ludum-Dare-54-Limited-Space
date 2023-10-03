@@ -98,7 +98,7 @@ public class Knife : MonoBehaviour
 
     void DropHeart()
     {
-        Instantiate(hearts[Random.Range(0, hearts.Length-1)], PlayerController.instance.nearestBody.transform.position,
+        Instantiate(hearts[Random.Range(0, hearts.Length)], PlayerController.instance.nearestBody.transform.position,
             Quaternion.Euler(0, 0, Random.Range(0, 360f)));
     }
 

@@ -18,9 +18,9 @@ public class IntroAnimation : MonoBehaviour
         introAnimation
             .Append(title.GetComponent<SpriteRenderer>().DOFade(0,0.5f))
             .AppendInterval(0.2f)
-            .Append(player.DOMove(spaceShip.position, 0.5f)).SetEase(Ease.Linear)
+            .Append(player.DOMove(spaceShip.position, 1.5f)).SetEase(Ease.Linear)
             .Append(player.GetComponent<SpriteRenderer>().DOFade(0, 1f)).SetEase(Ease.InOutQuad)
-            .Append(spaceShip.DOMove(Vector3.up * 12f, 6f)).SetEase(Ease.InQuad)
+            .Append(spaceShip.DOMove(Vector3.up * 10f, 2f)).SetEase(Ease.OutQuad)
             .OnComplete((() =>
             {
                 SceneManager.LoadScene("Main");
