@@ -12,11 +12,12 @@ public class SpaceShipAnimation : MonoBehaviour
         Sequence pickUp = DOTween.Sequence();
         
         pickUp
-            .AppendInterval(1f)
-            .Append(transform.DOMove(PlayerController.instance.transform.position, 2f))
+            .Append(transform.DOMove(PlayerController.instance.transform.position, 2f)).SetEase(Ease.OutQuad)
             .AppendInterval(0.2f)
             .Append(PlayerController.instance.GetComponentInChildren<SpriteRenderer>().DOFade(0, 0.5f))
-            .Append(transform.DOMove((PlayerController.instance.transform.position + Vector3.right * 10), 2f)).OnComplete((
+            .Append(transform.DOMove((PlayerController.instance.transform.position + Vector3.right * 14), 2f))
+            .SetEase(Ease.InQuad)
+            .OnComplete((
                 () =>
                 {
                     SceneManager.LoadScene("GameOver");

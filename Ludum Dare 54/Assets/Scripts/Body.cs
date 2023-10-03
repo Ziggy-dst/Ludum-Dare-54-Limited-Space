@@ -11,7 +11,7 @@ public class Body : MonoBehaviour
     void Start()
     {
         transform.DORotate(new Vector3(0, 0, 360) * (Random.Range(0, 2) * 2 - 1), Random.Range(30f, 90f),
-            RotateMode.FastBeyond360);
+            RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
     }
 
     // Update is called once per frame
